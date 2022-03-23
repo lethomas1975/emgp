@@ -6,12 +6,12 @@
             <name>emgp1</name>
             <creation-uuid>ec7e3dbe-0504-4024-9b7a-6e5804fdac4d</creation-uuid>
             <make-project-type>0</make-project-type>
-            <c-extensions/>
+            <c-extensions>c</c-extensions>
             <cpp-extensions/>
             <header-extensions/>
             <asminc-extensions/>
-            <make-dep-projects/>
             <sourceEncoding>UTF-8</sourceEncoding>
+            <make-dep-projects/>
         </data>
     </configuration>
 </project>
