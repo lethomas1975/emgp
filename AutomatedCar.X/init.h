@@ -32,6 +32,7 @@
 #define	XC_HEADER_TEMPLATE_H
 
 #include <xc.h> // include processor files - each processor file is guarded.  
+#include <pic18f4550.h>
 
 // TODO Insert appropriate #include <>
 
@@ -63,13 +64,13 @@
 // TODO Insert declarations or function prototypes (right here) to leverage 
 // live documentation
 
-#define 7SEGOut LATB
+#define SevenSEGOut LATB
 
 #define PS1In LATCbits.LATC0
 #define PS2In LATCbits.LATC1
 #define PS3In LATCbits.LATC2
 
-#define OS1In LATCBits.LATC7
+#define OS1In LATCbits.LATC7
 
 #define SM1Out0 LATDbits.LATD0
 #define SM1Out1 LATDbits.LATD1
