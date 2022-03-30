@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <xc.h>                     //xc8 compiler header file.
 #include <pic18f4550.h>
-//#include <p18f4550.h>
+#include <p18f4550.h>
 
 //#pragma config FOSC = INTOSC_HS  	// Internal oscillator, HS used by USB.
 #pragma config FOSC = INTOSCIO_EC   	// Internal oscillator, port function on RA6, EC used by USB. 
@@ -25,7 +25,7 @@ LEDPin = 1;	//Set LED Pin
 while(1)
     {
     LEDPin = ~LEDPin;	// Toggle LED Pin
-    __delay_ms(10);    
+    __delay_ms(10);
 
 	}
 }

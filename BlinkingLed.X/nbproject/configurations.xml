@@ -139,7 +139,7 @@
         <property key="memories.flashdata" value="true"/>
         <property key="memories.id" value="true"/>
         <property key="memories.programmemory" value="true"/>
-        <property key="memories.programmemory.end" value="0x3fff"/>
+        <property key="memories.programmemory.end" value="0x7fff"/>
         <property key="memories.programmemory.partition2" value="true"/>
         <property key="memories.programmemory.partition2.end"
                   value="${memories.programmemory.partition2.end.value}"/>
@@ -154,7 +154,7 @@
         <property key="programoptions.preservedataflash" value="false"/>
         <property key="programoptions.preserveeeprom" value="false"/>
         <property key="programoptions.preserveprogramrange" value="false"/>
-        <property key="programoptions.preserveprogramrange.end" value="0x3fff"/>
+        <property key="programoptions.preserveprogramrange.end" value="0x7fff"/>
         <property key="programoptions.preserveprogramrange.start" value="0x0"/>
         <property key="programoptions.preserveuserid" value="false"/>
         <property key="programoptions.programcalmem" value="false"/>
@@ -170,7 +170,7 @@
         <property key="codecoverage.outputfile" value=""/>
         <property key="oscillator.auxfrequency" value="120"/>
         <property key="oscillator.auxfrequencyunit" value="Mega"/>
-        <property key="oscillator.frequency" value="800"/>
+        <property key="oscillator.frequency" value="1"/>
         <property key="oscillator.frequencyunit" value="Mega"/>
         <property key="oscillator.rcfrequency" value="250"/>
         <property key="oscillator.rcfrequencyunit" value="Kilo"/>

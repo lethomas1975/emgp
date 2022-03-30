@@ -63,11 +63,13 @@
  */
 // TODO Insert declarations or function prototypes (right here) to leverage 
 // live documentation
-void left(int angle);
-void right(int angle);
-void forward();
-void backward();
+void left(int step);
+void right(int step);
+void forward(int step);
+void backward(int step);
 void uturn();
+
+void proximityDetection();
 
 #ifdef	__cplusplus
 extern "C" {

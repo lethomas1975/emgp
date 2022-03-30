@@ -14,5 +14,5 @@
 #include "../AutomatedCar.X/drive.h"
 
 void main(void) {
-    return;
+    proximityDetection();
 }

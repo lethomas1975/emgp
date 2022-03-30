@@ -16,6 +16,9 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>os.c</itemPath>
+      <itemPath>../AutomatedCar.X/init.c</itemPath>
+      <itemPath>../AutomatedCar.X/buzzer.c</itemPath>
+      <itemPath>../AutomatedCar.X/zebra.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
