@@ -25,14 +25,55 @@
  * Comments:
  * Revision history: 
  */
+#include <stdio.h>
+#include <stdlib.h>
+#include <xc.h>                     //xc8 compiler header file.
+#include <pic18f4550.h>
+#include <p18f4550.h>
+
+#define SevenSEGOut LATD
+#define SevenSEGTrisOut TRISD
+
+#define PS1In PORTAbits.RA0
+#define PS2In PORTAbits.RA1
+#define PS3In PORTAbits.RA2
+#define PS1TrisIn TRISAbits.RA0
+#define PS2TrisIn TRISAbits.RA1
+#define PS3TrisIn TRISAbits.RA2
+
+#define OS1In PORTCbits.RC0
+#define OS1TrisIn TRISCbits.RC0
+
+#define BUZZOut LATCbits.LATC1
+#define BUZZTrisOut TRISCbits.TRISC1
+
+#define SM1Out0 LATAbits.LATA3
+#define SM1Out1 LATAbits.LATA4
+#define SM1Out2 LATAbits.LATA5
+#define SM1Out3 LATBbits.LATB4
+#define SM2Out0 LATBbits.LATB0
+#define SM2Out1 LATBbits.LATB1
+#define SM2Out2 LATBbits.LATB2
+#define SM2Out3 LATBbits.LATB3
+#define SM1TrisOut0 TRISAbits.TRISA3
+#define SM1TrisOut1 TRISAbits.TRISA4
+#define SM1TrisOut2 TRISAbits.TRISA5
+#define SM1TrisOut3 TRISBbits.TRISB4
+#define SM2TrisOut0 TRISBbits.TRISB0
+#define SM2TrisOut1 TRISBbits.TRISB1
+#define SM2TrisOut2 TRISBbits.TRISB2
+#define SM2TrisOut3 TRISBbits.TRISB3
+
+// test led pin
+#define LEDPin LATCbits.LATC2       	// Define LEDPin as PORT C Pin 0
+#define LEDTris TRISCbits.TRISC2    	// Define LEDTris as TRISC Pin 0 as output mode
+
+void init();
 
 // This is a guard condition so that contents of this file are not included
 // more than once.  
 #ifndef XC_HEADER_TEMPLATE_H
 #define	XC_HEADER_TEMPLATE_H
-
-#include <xc.h> // include processor files - each processor file is guarded.  
-#include <pic18f4550.h>
 
 // TODO Insert appropriate #include <>
 
@@ -63,25 +104,6 @@
  */
 // TODO Insert declarations or function prototypes (right here) to leverage 
 // live documentation
-
-#define SevenSEGOut LATB
-
-#define PS1In LATCbits.LATC0
-#define PS2In LATCbits.LATC1
-#define PS3In LATCbits.LATC2
-
-#define OS1In LATCbits.LATC7
-
-#define SM1Out0 LATDbits.LATD0
-#define SM1Out1 LATDbits.LATD1
-#define SM1Out2 LATDbits.LATD2
-#define SM1Out3 LATDbits.LATD3
-#define SM2Out0 LATDbits.LATD4
-#define SM2Out1 LATDbits.LATD5
-#define SM2Out2 LATDbits.LATD6
-#define SM2Out3 LATDbits.LATD7
-
-void init();
 
 #ifdef	__cplusplus
 extern "C" {

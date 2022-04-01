@@ -6,6 +6,7 @@
                    projectFiles="true">
       <itemPath>../AutomatedCar.X/buzzer.h</itemPath>
       <itemPath>../AutomatedCar.X/init.h</itemPath>
+      <itemPath>../AutomatedCar.X/common.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -17,6 +18,7 @@
       <itemPath>bz.c</itemPath>
       <itemPath>../AutomatedCar.X/init.c</itemPath>
       <itemPath>../AutomatedCar.X/buzzer.c</itemPath>
+      <itemPath>../AutomatedCar.X/common.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -126,6 +128,9 @@
         <property key="opt-xc8-linker-serial" value=""/>
         <property key="program-the-device-with-default-config-words" value="true"/>
       </HI-TECH-LINK>
+      <PICkit3PlatformTool>
+        <property key="firmware.download.all" value="false"/>
+      </PICkit3PlatformTool>
       <XC8-config-global>
         <property key="advanced-elf" value="true"/>
         <property key="output-file-format" value="-mcof,+elf"/>

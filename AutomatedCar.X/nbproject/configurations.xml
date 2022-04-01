@@ -8,6 +8,7 @@
       <itemPath>drive.h</itemPath>
       <itemPath>buzzer.h</itemPath>
       <itemPath>zebra.h</itemPath>
+      <itemPath>common.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"

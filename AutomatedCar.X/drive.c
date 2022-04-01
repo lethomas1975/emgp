@@ -10,7 +10,7 @@
 #include <xc.h>
 #include <pic18f4550.h>
 
-#include "../AutomatedCar.X/drive.h"
+#include "drive.h"
 
 void left(int step) {
 }

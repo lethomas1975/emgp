@@ -26,6 +26,14 @@
  * Revision history: 
  */
 
+void left(int step);
+void right(int step);
+void forward(int step);
+void backward(int step);
+void uturn();
+
+void proximityDetection();
+
 // This is a guard condition so that contents of this file are not included
 // more than once.  
 #ifndef XC_HEADER_TEMPLATE_H
@@ -63,13 +71,6 @@
  */
 // TODO Insert declarations or function prototypes (right here) to leverage 
 // live documentation
-void left(int step);
-void right(int step);
-void forward(int step);
-void backward(int step);
-void uturn();
-
-void proximityDetection();
 
 #ifdef	__cplusplus
 extern "C" {
@@ -83,4 +84,3 @@ extern "C" {
 #endif /* __cplusplus */
 
 #endif	/* XC_HEADER_TEMPLATE_H */
-

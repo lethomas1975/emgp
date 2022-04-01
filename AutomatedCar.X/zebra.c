@@ -10,20 +10,28 @@
 #include <xc.h>
 #include <pic18f4550.h>
 
-#include "../AutomatedCar.X/init.h"
-#include "../AutomatedCar.X/zebra.h"
+#include "init.h"
+#include "buzzer.h"
+#include "zebra.h"
+
+int count = 0;
 
 void increment() {
-    // increment a counter
+    count = (count + 1) % 10;
     // set the 7 segment based on the counter
 }
 
 void decrement() {
+    count = (count - 1) % 10;
     // let see if we need that one
 }
 
 void zebraDetected() {
     if (OS1In == 1) {
         increment();
+        buzz();
+        buzzOff();
+    } else {
+        buzzOff();
     }
 }

@@ -11,8 +11,17 @@
 #include <xc.h>
 #include <pic18f4550.h>
 
-#include "../AutomatedCar.X/buzzer.h"
+#include "init.h"
+#include "common.h"
+#include "buzzer.h"
+
 
 void buzz() {
-    
+    BUZZOut = 0;
+    delayInMs(50);
+}
+
+void buzzOff() {
+    BUZZOut = 1;
+    delayInMs(10);
 }

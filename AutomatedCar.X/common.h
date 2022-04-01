@@ -26,8 +26,9 @@
  * Revision history: 
  */
 
-void buzz();
-void buzzOff();
+#define _XTAL_FREQ 8000000              // for __delay_ms() function
+
+void delayInMs(int ms);
 
 // This is a guard condition so that contents of this file are not included
 // more than once.  
