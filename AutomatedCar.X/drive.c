@@ -10,35 +10,41 @@
 #include <xc.h>
 #include <pic18f4550.h>
 
+#include "init.h"
+#include "common.h"
 #include "drive.h"
 
 void left(int step) {
+    LEDPin = ~LEDPin;
+    delayInMs(10);
 }
 
 void right(int step) {
+    LEDPin = ~LEDPin;
+    delayInMs(100);
 }
 
 void forward(int step) {
+    LEDPin = ~LEDPin;
+    delayInMs(10);
 }
 
 void backward(int step) {
+    LEDPin = ~LEDPin;
+    delayInMs(10);
 }
 
 void uturn() {
+    LEDPin = ~LEDPin;
+    delayInMs(10);
+    uturnBool = (uturnBool + 1) % 2;
 }
 
 void proximityDetection() {
-    //ps1 front
-    int ps1 = 0; //to be replaced with port. this is just to make the code compiled
-    //ps2 left
-    int ps2 = 0; //to be replaced with port. this is just to make the code compiled
-    //ps3 right
-    int ps3 = 0; //to be replaced with port. this is just to make the code compiled
-    
-    int forwardBool = ps1 == 0;
-    int leftBool = ps1 == 1 && ps2 == 0;
-    int rightBool = ps1 == 1 && ps2 == 1 && ps3 == 0;
-    int uturnBool = ps1 == 1 && ps2 == 1 && ps3 == 1;
+    int forwardBool = PS1In == 0;
+    int leftBool = PS1In == 1 && PS2In == 0;
+    int rightBool = PS1In == 1 && PS2In == 1 && PS3In == 0;
+    int uturnBool = PS1In == 1 && PS2In == 1 && PS3In == 1;
 
     if (forwardBool) {
         forward(1);

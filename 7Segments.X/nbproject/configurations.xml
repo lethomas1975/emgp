@@ -6,6 +6,8 @@
                    projectFiles="true">
       <itemPath>../AutomatedCar.X/init.h</itemPath>
       <itemPath>../AutomatedCar.X/zebra.h</itemPath>
+      <itemPath>../AutomatedCar.X/common.h</itemPath>
+      <itemPath>../AutomatedCar.X/drive.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -17,6 +19,8 @@
       <itemPath>7s.c</itemPath>
       <itemPath>../AutomatedCar.X/init.c</itemPath>
       <itemPath>../AutomatedCar.X/zebra.c</itemPath>
+      <itemPath>../AutomatedCar.X/common.c</itemPath>
+      <itemPath>../AutomatedCar.X/drive.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

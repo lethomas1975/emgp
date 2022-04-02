@@ -15,11 +15,18 @@
 #pragma config WDT = OFF            	// Disable watchdog timer
 
 #include "../AutomatedCar.X/init.h"
+#include "../AutomatedCar.X/common.h"
 #include "../AutomatedCar.X/drive.h"
 
 void main(void) {
     init();
     while (1) {
+        /*if (PS1In == 1) {
+            LEDPin = 1;
+        } else {
+            LEDPin = 0;
+        }*/
         proximityDetection();
+        delayInMs(100);
     }
 }

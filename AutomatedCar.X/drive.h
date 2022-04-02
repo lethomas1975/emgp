@@ -34,6 +34,8 @@ void uturn();
 
 void proximityDetection();
 
+int uturnBool = 0;
+
 // This is a guard condition so that contents of this file are not included
 // more than once.  
 #ifndef XC_HEADER_TEMPLATE_H

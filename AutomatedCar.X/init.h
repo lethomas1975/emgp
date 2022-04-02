@@ -33,13 +33,20 @@
 
 #define SevenSEGOut LATD
 #define SevenSEGTrisOut TRISD
+// D0 c
+// D1 e
+// D2 d
+// D3 f
+// D4 a
+// D5 b
+// D6 g
 
 #define PS1In PORTAbits.RA0
 #define PS2In PORTAbits.RA1
 #define PS3In PORTAbits.RA2
-#define PS1TrisIn TRISAbits.RA0
-#define PS2TrisIn TRISAbits.RA1
-#define PS3TrisIn TRISAbits.RA2
+#define PS1TrisIn TRISAbits.TRISA0
+#define PS2TrisIn TRISAbits.TRISA1
+#define PS3TrisIn TRISAbits.TRISA2
 
 #define OS1In PORTCbits.RC0
 #define OS1TrisIn TRISCbits.RC0

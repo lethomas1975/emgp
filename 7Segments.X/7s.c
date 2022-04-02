@@ -15,8 +15,18 @@
 #pragma config WDT = OFF            	// Disable watchdog timer
 
 #include "../AutomatedCar.X/init.h"
+#include "../AutomatedCar.X/common.h"
 #include "../AutomatedCar.X/zebra.h"
 
 void main(void) {
-    return;
+    init();
+    
+    while (1) {
+        for (int i = 0; i < 10; i++) {
+            increment();
+        }
+        for (int i = 0; i < 10; i++) {
+            decrement();
+        }
+    }
 }
