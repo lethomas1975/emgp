@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <xc.h>
 #include <pic18f4550.h>
+#include <math.h>
 
 #include "init.h"
 #include "common.h"
@@ -20,22 +21,30 @@ int count = -1;
 int direction = 0;
 
 void increment() {
-    count = (count + 1) % 10;
-    // set the 7 segment based on the counter
-    setSevenSegment(count);
+    count = count++;
 }
 
 void decrement() {
-    count = (count - 1) % 10;
-    if (count < 0) {
-        count = ~count;
-    }
-    // let see if we need that one
+    count = count--;
+}
+
+void resetCounter() {
+    count = -1;
+}
+
+void incrementAndDisplay() {
+    increment();
     setSevenSegment(count);
 }
 
-void setSevenSegment(int count) {
-    switch (count) {
+void decrementAndDisplay() {
+    decrement();
+    setSevenSegment(count);
+}
+
+void setSevenSegment(int display) {
+    int tmp = abs(display) % 10;
+    switch (tmp) {
         case 0:
             SevenSEGOut = 0b00111111;
             break;
@@ -73,9 +82,9 @@ void setSevenSegment(int count) {
 void zebraDetected() {
     if (OS1In == 0) {
         if (uturnBool == 0) {
-            increment();
+            incrementAndDisplay();
         } else {
-            decrement();
+            decrementAndDisplay();
         }
         buzz();
         buzzOff();

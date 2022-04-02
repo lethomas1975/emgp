@@ -26,8 +26,11 @@
  * Revision history: 
  */
 
+void resetCounter();
 void increment();
+void incrementAndDisplay();
 void decrement();
+void decrementAndDisplay();
 void zebraDetected();
 void setSevenSegment(int count);
 
