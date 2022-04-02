@@ -14,32 +14,41 @@
 #include "common.h"
 #include "drive.h"
 
+int direction = 0;
+
+void setLED(int move);
+
 void left(int step) {
-    LEDPin = ~LEDPin;
-    delayInMs(500);
+    setLED(2);
 }
 
 void right(int step) {
-    LEDPin = ~LEDPin;
-    delayInMs(500);
+    setLED(3);
 }
 
 void forward(int step) {
-    LEDPin = ~LEDPin;
-    delayInMs(500);
+    setLED(1);
 }
 
 void backward(int step) {
-    LEDPin = ~LEDPin;
-    delayInMs(500);
+    setLED(3);
 }
 
 void uturn() {
-    LEDPin = ~LEDPin;
-    delayInMs(500);
+    setLED(4);
     uturnBool = ++uturnBool % 2;
 }
 
+void setLED(int move) {
+    if (direction != move) {
+        LEDPin = ~LEDPin;
+        delayInMs(500);
+    } else { 
+        delayInMs(100);
+    }
+    direction = move;
+
+}
 void proximityDetection() {
     int forwardBool = PS1In == 0;
     int leftBool = PS1In == 1 && PS2In == 0;

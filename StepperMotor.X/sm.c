@@ -15,8 +15,39 @@
 #pragma config WDT = OFF            	// Disable watchdog timer
 
 #include "../AutomatedCar.X/init.h"
+#include "../AutomatedCar.X/common.h"
 #include "../AutomatedCar.X/drive.h"
 
+void step(int a, int b, int c, int d, int delay);
+
+void step(int a, int b, int c, int d, int delay) {
+        SM1Out0 = a;
+        SM1Out1 = b;
+        SM1Out2 = c;
+        SM1Out3 = d;
+        delayInMs(delay);    
+}
+
 void main(void) {
-    return;
+    init();
+    
+    step(0,0,0,0,100);
+
+    while (1) {
+        step(1,0,0,0,1000);
+        step(0,1,0,0,1000);
+        step(1,1,0,0,1000);
+        step(0,0,1,0,1000);
+        step(1,0,1,0,1000);
+        step(0,1,1,0,1000);
+        step(1,1,1,0,1000);
+        step(0,0,0,1,1000);
+        step(1,0,0,1,1000);
+        step(0,1,0,1,1000);
+        step(1,1,0,1,1000);
+        step(0,0,1,1,1000);
+        step(1,0,1,1,1000);
+        step(0,1,1,1,1000);
+        step(1,1,1,1,1000);
+    }
 }

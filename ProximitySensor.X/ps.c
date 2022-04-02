@@ -21,11 +21,6 @@
 void main(void) {
     init();
     while (1) {
-        if (PS1In == 0) {
-            LEDPin = 1;
-        } else {
-            LEDPin = 0;
-        }
         proximityDetection();
         delayInMs(500);
     }

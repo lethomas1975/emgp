@@ -57,7 +57,7 @@
 #define SM1Out0 LATAbits.LATA3
 #define SM1Out1 LATAbits.LATA4
 #define SM1Out2 LATAbits.LATA5
-#define SM1Out3 LATBbits.LATB4
+#define SM1Out3 LATEbits.LATE0
 #define SM2Out0 LATBbits.LATB0
 #define SM2Out1 LATBbits.LATB1
 #define SM2Out2 LATBbits.LATB2
