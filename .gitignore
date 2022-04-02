@@ -54,3 +54,4 @@ dkms.conf
 debug
 build
 dist
+/.DS_Store
