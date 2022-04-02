@@ -16,28 +16,28 @@
 
 void left(int step) {
     LEDPin = ~LEDPin;
-    delayInMs(10);
+    delayInMs(500);
 }
 
 void right(int step) {
     LEDPin = ~LEDPin;
-    delayInMs(100);
+    delayInMs(500);
 }
 
 void forward(int step) {
     LEDPin = ~LEDPin;
-    delayInMs(10);
+    delayInMs(500);
 }
 
 void backward(int step) {
     LEDPin = ~LEDPin;
-    delayInMs(10);
+    delayInMs(500);
 }
 
 void uturn() {
     LEDPin = ~LEDPin;
-    delayInMs(10);
-    uturnBool = (uturnBool + 1) % 2;
+    delayInMs(500);
+    uturnBool = ++uturnBool % 2;
 }
 
 void proximityDetection() {

@@ -18,14 +18,14 @@
 #include "zebra.h"
 
 int count = -1;
-int direction = 0;
+int currentState = -1;
 
 void increment() {
-    count = count++;
+    count++;
 }
 
 void decrement() {
-    count = count--;
+    count--;
 }
 
 void resetCounter() {
@@ -76,19 +76,22 @@ void setSevenSegment(int display) {
             SevenSEGOut = 0b01111101;
             break;            
     }
-    delayInMs(100);
+    delayInMs(10);
 }
 
 void zebraDetected() {
-    if (OS1In == 0) {
-        if (uturnBool == 0) {
-            incrementAndDisplay();
-        } else {
-            decrementAndDisplay();
+    if (currentState != OS1In) {
+        currentState = OS1In;
+        if (currentState == 0) {
+            if (uturnBool == 0) {
+                incrementAndDisplay();
+            } else {
+                decrementAndDisplay();
+            }
+            buzz();
+            buzzOff();
+        } else if (currentState == 1) {
+            buzzOff();
         }
-        buzz();
-        buzzOff();
-    } else {
-        buzzOff();
     }
 }

@@ -41,9 +41,9 @@
 // D5 b
 // D6 g
 
-#define PS1In PORTAbits.RA0
-#define PS2In PORTAbits.RA1
-#define PS3In PORTAbits.RA2
+#define PS1In PORTAbits.RA0 // front
+#define PS2In PORTAbits.RA1 // left
+#define PS3In PORTAbits.RA2 // right
 #define PS1TrisIn TRISAbits.TRISA0
 #define PS2TrisIn TRISAbits.TRISA1
 #define PS3TrisIn TRISAbits.TRISA2

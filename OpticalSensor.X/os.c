@@ -27,13 +27,7 @@ void main(void) {
     buzzOff();
     
     while (1) {
-        if (OS1In == 0) {
-            LEDPin = 1;	// Toggle LED Pin
-        } else {
-            LEDPin = 0;
-        }
-        //LEDPin = ~OS1In;
+        LEDPin = ~OS1In;
         zebraDetected();
-        delayInMs(100);
     }
 }
