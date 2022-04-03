@@ -59,13 +59,13 @@ void backward() {
 void uturn() {
     setLED(4);
     uturnBool = ++uturnBool % 2;
-    for (int j = 0; j < 10; j++) {
+    for (int j = 0; j < 20; j++) {
         for (int i = 8; i > 0; i--) {
             SMOut = LFT[i];
             delayInMs(STEP_DELAY);
         }
     }
-    for (int j = 0; j < 10; j++) {
+    for (int j = 0; j < 20; j++) {
         right();
     }
 }

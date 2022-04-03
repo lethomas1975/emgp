@@ -20,22 +20,25 @@
 
 void main(void) {
     init();
+    int rev = 20;
     while (1) {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < rev; i++) {
             forward();
         }
         delayInMs(1000);
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < rev; i++) {
             left();
         }
         delayInMs(1000);
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < rev; i++) {
             right();
         }
         delayInMs(1000);
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < rev; i++) {
             backward();
         }
+        delayInMs(1000);
+        uturn();
         delayInMs(1000);
     }
 }
