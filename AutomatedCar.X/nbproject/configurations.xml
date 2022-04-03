@@ -22,6 +22,7 @@
       <itemPath>init.c</itemPath>
       <itemPath>drive.c</itemPath>
       <itemPath>zebra.c</itemPath>
+      <itemPath>common.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
