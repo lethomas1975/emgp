@@ -29,17 +29,38 @@
 #include <stdlib.h>
 #include <xc.h>                     //xc8 compiler header file.
 #include <pic18f4550.h>
-#include <p18f4550.h>
+//#include <p18f4550.h>
 
-#define SevenSEGOut LATD
-#define SevenSEGTrisOut TRISD
-// D0 c
-// D1 e
-// D2 d
-// D3 f
-// D4 a
-// D5 b
-// D6 g
+//#pragma config FOSC = INTOSC_HS  	// Internal oscillator, HS used by USB.
+#pragma config FOSC = INTOSCIO_EC   	// Internal oscillator, port function on RA6, EC used by USB. 
+#pragma config WDT = OFF            	// Disable watchdog timer
+
+#define SMOut LATD
+#define SMTrisOut TRISD
+
+//#define SevenSEGOut LATD
+//#define SevenSEGTrisOut TRISD
+#define SevenSEGOut0 LATBbits.LATB0
+#define SevenSEGOut1 LATBbits.LATB1
+#define SevenSEGOut2 LATBbits.LATB2
+#define SevenSEGOut3 LATBbits.LATB3
+#define SevenSEGOut4 LATEbits.LATE0
+#define SevenSEGOut5 LATEbits.LATE1
+#define SevenSEGOut6 LATEbits.LATE2
+#define SevenSEGTrisOut0 TRISBbits.TRISB0
+#define SevenSEGTrisOut1 TRISBbits.TRISB1
+#define SevenSEGTrisOut2 TRISBbits.TRISB2
+#define SevenSEGTrisOut3 TRISBbits.TRISB3
+#define SevenSEGTrisOut4 TRISEbits.TRISE0
+#define SevenSEGTrisOut5 TRISEbits.TRISE1
+#define SevenSEGTrisOut6 TRISEbits.TRISE2
+// RB0 b
+// RB1 a
+// RB2 f
+// RB3 g
+// RE0 e
+// RE1 d
+// RE2 c
 
 #define PS1In PORTAbits.RA0 // front
 #define PS2In PORTAbits.RA1 // left
@@ -54,7 +75,7 @@
 #define BUZZOut LATCbits.LATC1
 #define BUZZTrisOut TRISCbits.TRISC1
 
-#define SM1Out0 LATAbits.LATA3
+/*#define SM1Out0 LATAbits.LATA3
 #define SM1Out1 LATAbits.LATA4
 #define SM1Out2 LATAbits.LATA5
 #define SM1Out3 LATEbits.LATE0
@@ -70,6 +91,7 @@
 #define SM2TrisOut1 TRISBbits.TRISB1
 #define SM2TrisOut2 TRISBbits.TRISB2
 #define SM2TrisOut3 TRISBbits.TRISB3
+*/
 
 // test led pin
 #define LEDPin LATCbits.LATC2       	// Define LEDPin as PORT C Pin 0

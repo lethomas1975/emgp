@@ -42,38 +42,48 @@ void decrementAndDisplay() {
     setSevenSegment(count);
 }
 
+void setSegmentByBit(int a, int b, int c, int d, int e, int f, int g) {
+    SevenSEGOut0 = b;
+    SevenSEGOut1 = a;
+    SevenSEGOut2 = f;
+    SevenSEGOut3 = g;
+    SevenSEGOut4 = e;
+    SevenSEGOut5 = d;
+    SevenSEGOut6 = c;
+}
+
 void setSevenSegment(int display) {
     int tmp = abs(display) % 10;
     switch (tmp) {
         case 0:
-            SevenSEGOut = 0b00111111;
+            setSegmentByBit(1, 1, 1, 1, 1, 1, 0);
             break;
         case 1:
-            SevenSEGOut = 0b00100001;
+            setSegmentByBit(0, 1, 1, 0, 0, 0, 0);
             break;
         case 2:
-            SevenSEGOut = 0b01110110;
+            setSegmentByBit(1, 1, 0, 1, 1, 0, 1);
             break;
         case 3:
-            SevenSEGOut = 0b01110101;
+            setSegmentByBit(1, 1, 1, 1, 0, 0, 1);
             break;
         case 4:
-            SevenSEGOut = 0b01101001;
+            setSegmentByBit(0, 1, 1, 0, 0, 1, 1);
             break;
         case 5:
-            SevenSEGOut = 0b01011101;
+            setSegmentByBit(1, 0, 1, 1, 0, 1, 1);
             break;
         case 6:
-            SevenSEGOut = 0b01011111;
+            setSegmentByBit(1, 0, 1, 1, 1, 1, 1);
             break;
         case 7:
-            SevenSEGOut = 0b00110001;
+            setSegmentByBit(1, 1, 1, 0, 0, 0, 0);
             break;
         case 8:
-            SevenSEGOut = 0b01111111;
+            setSegmentByBit(1, 1, 1, 1, 1, 1, 1);
             break;
         case 9:
-            SevenSEGOut = 0b01111101;
+            setSegmentByBit(1, 1, 1, 1, 0, 1, 1);
             break;            
     }
     delayInMs(10);
