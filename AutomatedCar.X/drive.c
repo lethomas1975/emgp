@@ -15,92 +15,58 @@
 #include "drive.h"
 
 int direction = 0;
-int STEPS = 2048;
+int STEP_DELAY = 10;
 
-unsigned char FWD_STEP1 = 0x99; //0b10011001
-unsigned char FWD_STEP2 = 0x55; //0b01010101
-unsigned char FWD_STEP3 = 0x66; //0b01100110
-unsigned char FWD_STEP4 = 0xAA; //0b10011001
-
-unsigned char BWD_STEP1 = 0xAA; //0b10011001
-unsigned char BWD_STEP2 = 0x66; //0b01010101
-unsigned char BWD_STEP3 = 0x55; //0b01100110
-unsigned char BWD_STEP4 = 0x99; //0b10011001
-
-unsigned char LFT_STEP1 = 0xA9; //0b10011001
-unsigned char LFT_STEP2 = 0x65; //0b01010101
-unsigned char LFT_STEP3 = 0x56; //0b01100110
-unsigned char LFT_STEP4 = 0x9A; //0b10011001
-
-unsigned char RGT_STEP1 = 0x9A; //0b10011001
-unsigned char RGT_STEP2 = 0x56; //0b01010101
-unsigned char RGT_STEP3 = 0x65; //0b01100110
-unsigned char RGT_STEP4 = 0xA9; //0b10011001
+unsigned char FWD[8] = { 0b10000001, 0b11000011, 0b01000010, 0b01100110, 0b00100100, 0b00111100, 0b00011000, 0b10011001};
+unsigned char LFT[8] = { 0b10001000, 0b11001100, 0b01000100, 0b01100110, 0b00100010, 0b00110011, 0b00010001, 0b10011001};
+unsigned char RGT[8] = { 0b00010001, 0b00110011, 0b00100010, 0b01100110, 0b01000100, 0b11001100, 0b10001000, 0b10011001};
+unsigned char BWD[8] = { 0b00011000, 0b00111100, 0b00100100, 0b01100110, 0b01000010, 0b11000011, 0b10000001, 0b10011001};
 
 void setLED(int move);
 
-void left(int step) {
+void left() {
     setLED(2);
-    for (int i = 0; i < step; i++) {
-        SMOut = LFT_STEP1;
-        delayInMs(10);
-        SMOut = LFT_STEP2;
-        delayInMs(10);
-        SMOut = LFT_STEP3;
-        delayInMs(10);
-        SMOut = LFT_STEP4;
-        delayInMs(10);
+    for (int i = 0; i < 8; i++) {
+        SMOut = LFT[i];
+        delayInMs(STEP_DELAY);
     }
 }
 
-void right(int step) {
+void right() {
     setLED(3);
-    for (int i = 0; i < step; i++) {
-        SMOut = RGT_STEP1;
-        delayInMs(10);
-        SMOut = RGT_STEP2;
-        delayInMs(10);
-        SMOut = RGT_STEP3;
-        delayInMs(10);
-        SMOut = RGT_STEP4;
-        delayInMs(10);
+    for (int i = 0; i < 8; i++) {
+        SMOut = RGT[i];
+        delayInMs(STEP_DELAY);
     }
 }
 
-void forward(int step) {
+void forward() {
     setLED(1);
-    for (int i = 0; i < step; i++) {
-        SMOut = FWD_STEP1;
-        delayInMs(10);
-        SMOut = FWD_STEP2;
-        delayInMs(10);
-        SMOut = FWD_STEP3;
-        delayInMs(10);
-        SMOut = FWD_STEP4;
-        delayInMs(10);
+    for (int i = 0; i < 8; i++) {
+        SMOut = FWD[i];
+        delayInMs(STEP_DELAY);
     }
-
 }
 
-void backward(int step) {
+void backward() {
     setLED(3);
-    for (int i = 0; i < step; i++) {
-        SMOut = BWD_STEP1;
-        delayInMs(10);
-        SMOut = BWD_STEP2;
-        delayInMs(10);
-        SMOut = BWD_STEP3;
-        delayInMs(10);
-        SMOut = BWD_STEP4;
-        delayInMs(10);
+    for (int i = 0; i < 8; i++) {
+        SMOut = BWD[i];
+        delayInMs(STEP_DELAY);
     }
 }
 
 void uturn() {
     setLED(4);
     uturnBool = ++uturnBool % 2;
-    for (int i = 0; i < STEPS; i++) {
-        left(STEPS);
+    for (int j = 0; j < 10; j++) {
+        for (int i = 8; i > 0; i--) {
+            SMOut = LFT[i];
+            delayInMs(STEP_DELAY);
+        }
+    }
+    for (int j = 0; j < 10; j++) {
+        right();
     }
 }
 
@@ -112,8 +78,8 @@ void setLED(int move) {
         delayInMs(100);
     }
     direction = move;
-
 }
+
 void proximityDetection() {
     int forwardBool = PS1In == 0;
     int leftBool = PS1In == 1 && PS2In == 0;
@@ -121,16 +87,15 @@ void proximityDetection() {
     int uturnBool = PS1In == 1 && PS2In == 1 && PS3In == 1;
 
     if (forwardBool) {
-        forward(STEPS);
+        forward();
     } else {
-        backward(STEPS);        
+        backward();        
         if (leftBool) {
-            left(STEPS);
+            left();
         } else if (rightBool) {
-            right(STEPS);
+            right();
         } else if (uturnBool) {
             uturn();
         }
     }
-    
 }

@@ -26,10 +26,10 @@
  * Revision history: 
  */
 
-void left(int step);
-void right(int step);
-void forward(int step);
-void backward(int step);
+void left();
+void right();
+void forward();
+void backward();
 void uturn();
 
 void proximityDetection();
