@@ -13,7 +13,21 @@
 #include "common.h"
 
 void delayInMs(int ms) {
-    for (int i = 0; i < ms / 10; i++) {
-        __delay_ms(10);
-    }    
+    if (ms/10 >= 1) {
+        for (int i = 0; i < ms / 10; i++) {
+            __delay_ms(10);
+        }
+    } else {
+        __delay_ms(1);
+    }
+}
+
+void delayInUs(int us) {
+    if (us/10 >= 1) {
+        for (int i = 0; i < us / 10; i++) {
+            __delay_us(10);
+        }
+    } else {
+        __delay_us(1);
+    }
 }

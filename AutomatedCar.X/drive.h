@@ -27,7 +27,9 @@
  */
 
 void left();
+void leftBackward();
 void right();
+void rightBackward();
 void forward();
 void backward();
 void uturn();
