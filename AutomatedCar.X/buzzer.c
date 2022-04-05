@@ -17,11 +17,11 @@
 
 
 void buzz() {
-    BUZZOut = 0;
+    BUZZOut = 1;
     delayInMs(50);
 }
 
 void buzzOff() {
-    BUZZOut = 1;
-    delayInMs(10);
+    BUZZOut = 0;
+    delayInMs(1);
 }

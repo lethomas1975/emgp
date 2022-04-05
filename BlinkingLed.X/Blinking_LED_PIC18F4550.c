@@ -16,16 +16,13 @@
 
 #define _XTAL_FREQ 8000000              // for __delay_ms() function
 
-
 void main(void) {
 
-LEDTris = 0;	//Set LED Pin data direction to OUTPUT
-LEDPin = 1;	//Set LED Pin
+    LEDTris = 0;	//Set LED Pin data direction to OUTPUT
+    LEDPin = 1;	//Set LED Pin
 
-while(1)
-    {
-    LEDPin = ~LEDPin;	// Toggle LED Pin
-    __delay_ms(10);
-
-	}
+    while(1) {
+        LEDPin = ~LEDPin;	// Toggle LED Pin
+        __delay_ms(10);
+    }
 }

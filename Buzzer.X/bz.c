@@ -21,10 +21,10 @@
 void main(void) {
     init();
 
-    BUZZOut = 1;
+    BUZZOut = 0;
     
     while (1) {
         BUZZOut = ~BUZZOut;
-        delayInMs(500);
+        delayInMs(50);
     }
 }

@@ -16,9 +16,6 @@ void init() {
     ADCON1 = 0x0F;
     CMCON = 0x07;
     
-    /*SevenSEGOut = 0;
-    SevenSEGTrisOut = 0;*/
-    
     SMOut = 0;
     SMTrisOut = 0;
 
@@ -33,7 +30,6 @@ void init() {
     OS1TrisIn = 1;
 
     BUZZOut = 0;
-    BUZZOut = 1; // to switch off after initialization
     BUZZTrisOut = 0;
 
     SevenSEGOut0 = 0;
@@ -51,6 +47,6 @@ void init() {
     SevenSEGTrisOut5 = 0;
     SevenSEGTrisOut6 = 0;
 
-    LEDTris = 0;	//Set LED Pin data direction to OUTPUT
+    LEDTris = 0;
 
 }
