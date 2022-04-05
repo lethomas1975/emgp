@@ -38,15 +38,13 @@
 #define SMOut LATD
 #define SMTrisOut TRISD
 
-//#define SevenSEGOut LATD
-//#define SevenSEGTrisOut TRISD
-#define SevenSEGOut0 LATBbits.LATB0
-#define SevenSEGOut1 LATBbits.LATB1
-#define SevenSEGOut2 LATBbits.LATB2
-#define SevenSEGOut3 LATBbits.LATB3
-#define SevenSEGOut4 LATEbits.LATE0
-#define SevenSEGOut5 LATEbits.LATE1
-#define SevenSEGOut6 LATEbits.LATE2
+#define SevenSEGOut0 LATBbits.LATB0 // RB0 b
+#define SevenSEGOut1 LATBbits.LATB1 // RB1 a
+#define SevenSEGOut2 LATBbits.LATB2 // RB2 f
+#define SevenSEGOut3 LATBbits.LATB3 // RB3 g
+#define SevenSEGOut4 LATEbits.LATE0 // RE0 e
+#define SevenSEGOut5 LATEbits.LATE1 // RE1 d
+#define SevenSEGOut6 LATEbits.LATE2 // RE2 c
 #define SevenSEGTrisOut0 TRISBbits.TRISB0
 #define SevenSEGTrisOut1 TRISBbits.TRISB1
 #define SevenSEGTrisOut2 TRISBbits.TRISB2
@@ -54,20 +52,6 @@
 #define SevenSEGTrisOut4 TRISEbits.TRISE0
 #define SevenSEGTrisOut5 TRISEbits.TRISE1
 #define SevenSEGTrisOut6 TRISEbits.TRISE2
-// RB0 b
-// RB1 a
-// RB2 f
-// RB3 g
-// RE0 e
-// RE1 d
-// RE2 c
-
-#define PS1In PORTAbits.RA0 // front
-#define PS2In PORTAbits.RA1 // left
-#define PS3In PORTAbits.RA2 // right
-#define PS1TrisIn TRISAbits.TRISA0
-#define PS2TrisIn TRISAbits.TRISA1
-#define PS3TrisIn TRISAbits.TRISA2
 
 #define OS1In PORTCbits.RC0
 #define OS1TrisIn TRISCbits.RC0
@@ -75,29 +59,30 @@
 #define BUZZOut LATCbits.LATC1
 #define BUZZTrisOut TRISCbits.TRISC1
 
-/*#define SM1Out0 LATAbits.LATA3
-#define SM1Out1 LATAbits.LATA4
-#define SM1Out2 LATAbits.LATA5
-#define SM1Out3 LATEbits.LATE0
-#define SM2Out0 LATBbits.LATB0
-#define SM2Out1 LATBbits.LATB1
-#define SM2Out2 LATBbits.LATB2
-#define SM2Out3 LATBbits.LATB3
-#define SM1TrisOut0 TRISAbits.TRISA3
-#define SM1TrisOut1 TRISAbits.TRISA4
-#define SM1TrisOut2 TRISAbits.TRISA5
-#define SM1TrisOut3 TRISBbits.TRISB4
-#define SM2TrisOut0 TRISBbits.TRISB0
-#define SM2TrisOut1 TRISBbits.TRISB1
-#define SM2TrisOut2 TRISBbits.TRISB2
-#define SM2TrisOut3 TRISBbits.TRISB3
-*/
 
 // test led pin
 #define LEDPin LATCbits.LATC2       	// Define LEDPin as PORT C Pin 0
 #define LEDTris TRISCbits.TRISC2    	// Define LEDTris as TRISC Pin 0 as output mode
 
+// use ADC comment the line below to use digital
+//#define C2_USE_ADC
+
+#ifdef C2_USE_ADC
+    #define PS1In PORTAbits.AN0 // front
+    #define PS2In PORTAbits.AN1 // left
+    #define PS3In PORTAbits.AN2 // right
+#else
+    #define PS1In PORTAbits.RA0 // front
+    #define PS2In PORTAbits.RA1 // left
+    #define PS3In PORTAbits.RA2 // right
+#endif
+
+#define PS1TrisIn TRISAbits.TRISA0
+#define PS2TrisIn TRISAbits.TRISA1
+#define PS3TrisIn TRISAbits.TRISA2
+
 void init();
+
 
 // This is a guard condition so that contents of this file are not included
 // more than once.  

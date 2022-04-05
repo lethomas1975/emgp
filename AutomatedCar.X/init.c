@@ -9,12 +9,19 @@
 #include <stdlib.h>
 #include <xc.h>
 #include <pic18f4550.h>
+#include <adc.h>
 
 #include "init.h"
 
 void init() {
-    ADCON1 = 0x0F;
-    CMCON = 0x07;
+    #ifdef C2_USE_ADC
+        CloseADC();
+        ADCON1 = 0x0C;
+        ADCON2 = 0b00110010;
+    #else
+        ADCON1 = 0x0F;
+        CMCON = 0x07;
+    #endif
     
     SMOut = 0;
     SMTrisOut = 0;

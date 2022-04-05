@@ -22,6 +22,5 @@ void main(void) {
     init();
     while (1) {
         proximityDetection();
-        delayInMs(500);
     }
 }

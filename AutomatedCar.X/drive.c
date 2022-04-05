@@ -16,12 +16,12 @@
 
 int direction = 0;
 int STEP_DELAY = 1;
-int STEPS_PER_REV = 360 / ((5.625/64) * 8); // datasheet angle per step 5.625/64
+int STEPS_PER_REV = (int) (360.0 / ((5.625/64.0) * 8.0)); // datasheet angle per step 5.625/64
 
-unsigned char FWD[8] = { 0b10000001, 0b11000011, 0b01000010, 0b01100110, 0b00100100, 0b00111100, 0b00011000, 0b10011001};
-unsigned char LFT[8] = { 0b10001000, 0b11001100, 0b01000100, 0b01100110, 0b00100010, 0b00110011, 0b00010001, 0b10011001};
-unsigned char RGT[8] = { 0b00010001, 0b00110011, 0b00100010, 0b01100110, 0b01000100, 0b11001100, 0b10001000, 0b10011001};
-unsigned char BWD[8] = { 0b00011000, 0b00111100, 0b00100100, 0b01100110, 0b01000010, 0b11000011, 0b10000001, 0b10011001};
+unsigned char FWD[9] = { 0b10000001, 0b11000011, 0b01000010, 0b01100110, 0b00100100, 0b00111100, 0b00011000, 0b10011001, '\0' };
+unsigned char LFT[9] = { 0b10001000, 0b11001100, 0b01000100, 0b01100110, 0b00100010, 0b00110011, 0b00010001, 0b10011001, '\0'};
+unsigned char RGT[9] = { 0b00010001, 0b00110011, 0b00100010, 0b01100110, 0b01000100, 0b11001100, 0b10001000, 0b10011001, '\0'};
+unsigned char BWD[9] = { 0b00011000, 0b00111100, 0b00100100, 0b01100110, 0b01000010, 0b11000011, 0b10000001, 0b10011001, '\0'};
 
 void setLED(int move);
 
@@ -36,7 +36,7 @@ void left() {
 }
 
 void leftBackward() {
-    setLED(2);
+    setLED(5);
     for (int j = 0; j < STEPS_PER_REV; j++) {
         for (int i = 8; i > 0; i--) {
             SMOut = LFT[i];
@@ -56,7 +56,7 @@ void right() {
 }
 
 void rightBackward() {
-    setLED(3);
+    setLED(6);
     for (int j = 0; j < STEPS_PER_REV; j++) {
         for (int i = 8; i > 0; i--) {
             SMOut = RGT[i];
