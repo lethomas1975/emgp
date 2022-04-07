@@ -7,6 +7,9 @@
       <itemPath>../AutomatedCar.X/init.h</itemPath>
       <itemPath>../AutomatedCar.X/drive.h</itemPath>
       <itemPath>../AutomatedCar.X/common.h</itemPath>
+      <itemPath>../AutomatedCar.X/common_adc.h</itemPath>
+      <itemPath>../AutomatedCar.X/zebra.h</itemPath>
+      <itemPath>../AutomatedCar.X/buzzer.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -19,6 +22,9 @@
       <itemPath>../AutomatedCar.X/drive.c</itemPath>
       <itemPath>../AutomatedCar.X/init.c</itemPath>
       <itemPath>../AutomatedCar.X/common.c</itemPath>
+      <itemPath>../AutomatedCar.X/common_adc.c</itemPath>
+      <itemPath>../AutomatedCar.X/zebra.c</itemPath>
+      <itemPath>../AutomatedCar.X/buzzer.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -28,6 +34,7 @@
   </logicalFolder>
   <sourceRootList>
     <Elem>../AutomatedCar.X</Elem>
+    <Elem>../../../data/apps/xc8/v1.35/include/plib</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -45,7 +52,6 @@
       <compileType>
         <linkerTool>
           <linkerLibItems>
-            <linkerLibFileItem>../../../data/apps/xc8/v1.35/lib/pic18-plib-c18-18f45j50.lpp</linkerLibFileItem>
           </linkerLibItems>
         </linkerTool>
         <archiverTool>
@@ -68,8 +74,7 @@
       <HI-TECH-COMP>
         <property key="asmlist" value="true"/>
         <property key="define-macros" value=""/>
-        <property key="extra-include-directories"
-                  value="..\..\..\data\apps\xc8\v1.35\include\plib"/>
+        <property key="extra-include-directories" value=""/>
         <property key="identifier-length" value="255"/>
         <property key="operation-mode" value="free"/>
         <property key="opt-xc8-compiler-strict_ansi" value="false"/>

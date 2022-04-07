@@ -23,6 +23,7 @@
       <itemPath>drive.c</itemPath>
       <itemPath>zebra.c</itemPath>
       <itemPath>common.c</itemPath>
+      <itemPath>common_adc.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -32,6 +33,7 @@
   </logicalFolder>
   <sourceRootList>
     <Elem>.</Elem>
+    <Elem>../../../data/apps/xc8/v1.35/include/plib</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>

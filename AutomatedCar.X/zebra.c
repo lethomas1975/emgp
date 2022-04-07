@@ -86,7 +86,6 @@ void setSevenSegment(int display) {
             setSegmentByBit(1, 1, 1, 1, 0, 1, 1);
             break;            
     }
-    delayInMs(10);
 }
 
 void zebraDetected() {

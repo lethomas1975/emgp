@@ -23,5 +23,4 @@ void buzz() {
 
 void buzzOff() {
     BUZZOut = 0;
-    delayInMs(1);
 }

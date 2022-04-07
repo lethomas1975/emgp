@@ -9,15 +9,24 @@
 #include <stdlib.h>
 #include <xc.h>
 #include <pic18f4550.h>
-#include <adc.h>
 
 #include "init.h"
 
+void initADC();
+
+void initADC() {
+    ADCON1 = 0x0C; // AN0, AN1 and AN2 use Analog
+    ADCON2 = 0b10110010; // right alignment, 16TAD and FOSC/32
+    ADRESH=0;
+    ADRESL=0;
+}
+
 void init() {
+    ADCON0bits.GO = 0;
+    ADCON0bits.ADON = 0;
+    
     #ifdef C2_USE_ADC
-        CloseADC();
-        ADCON1 = 0x0C;
-        ADCON2 = 0b00110010;
+        initADC();
     #else
         ADCON1 = 0x0F;
         CMCON = 0x07;
@@ -55,5 +64,6 @@ void init() {
     SevenSEGTrisOut6 = 0;
 
     LEDTris = 0;
+    LEDRTris = 0;
 
 }

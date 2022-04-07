@@ -45,17 +45,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=ps.c ../AutomatedCar.X/drive.c ../AutomatedCar.X/init.c ../AutomatedCar.X/common.c
+SOURCEFILES_QUOTED_IF_SPACED=ps.c ../AutomatedCar.X/drive.c ../AutomatedCar.X/init.c ../AutomatedCar.X/common.c ../AutomatedCar.X/common_adc.c ../AutomatedCar.X/zebra.c ../AutomatedCar.X/buzzer.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/ps.p1 ${OBJECTDIR}/_ext/1116578499/drive.p1 ${OBJECTDIR}/_ext/1116578499/init.p1 ${OBJECTDIR}/_ext/1116578499/common.p1
-POSSIBLE_DEPFILES=${OBJECTDIR}/ps.p1.d ${OBJECTDIR}/_ext/1116578499/drive.p1.d ${OBJECTDIR}/_ext/1116578499/init.p1.d ${OBJECTDIR}/_ext/1116578499/common.p1.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/ps.p1 ${OBJECTDIR}/_ext/1116578499/drive.p1 ${OBJECTDIR}/_ext/1116578499/init.p1 ${OBJECTDIR}/_ext/1116578499/common.p1 ${OBJECTDIR}/_ext/1116578499/common_adc.p1 ${OBJECTDIR}/_ext/1116578499/zebra.p1 ${OBJECTDIR}/_ext/1116578499/buzzer.p1
+POSSIBLE_DEPFILES=${OBJECTDIR}/ps.p1.d ${OBJECTDIR}/_ext/1116578499/drive.p1.d ${OBJECTDIR}/_ext/1116578499/init.p1.d ${OBJECTDIR}/_ext/1116578499/common.p1.d ${OBJECTDIR}/_ext/1116578499/common_adc.p1.d ${OBJECTDIR}/_ext/1116578499/zebra.p1.d ${OBJECTDIR}/_ext/1116578499/buzzer.p1.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/ps.p1 ${OBJECTDIR}/_ext/1116578499/drive.p1 ${OBJECTDIR}/_ext/1116578499/init.p1 ${OBJECTDIR}/_ext/1116578499/common.p1
+OBJECTFILES=${OBJECTDIR}/ps.p1 ${OBJECTDIR}/_ext/1116578499/drive.p1 ${OBJECTDIR}/_ext/1116578499/init.p1 ${OBJECTDIR}/_ext/1116578499/common.p1 ${OBJECTDIR}/_ext/1116578499/common_adc.p1 ${OBJECTDIR}/_ext/1116578499/zebra.p1 ${OBJECTDIR}/_ext/1116578499/buzzer.p1
 
 # Source Files
-SOURCEFILES=ps.c ../AutomatedCar.X/drive.c ../AutomatedCar.X/init.c ../AutomatedCar.X/common.c
+SOURCEFILES=ps.c ../AutomatedCar.X/drive.c ../AutomatedCar.X/init.c ../AutomatedCar.X/common.c ../AutomatedCar.X/common_adc.c ../AutomatedCar.X/zebra.c ../AutomatedCar.X/buzzer.c
 
 
 CFLAGS=
@@ -85,7 +85,7 @@ ${OBJECTDIR}/ps.p1: ps.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/ps.p1.d 
 	@${RM} ${OBJECTDIR}/ps.p1 
-	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=pickit3  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 -I"../../../data/apps/xc8/v1.35/include/plib" --warn=0 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/ps.p1  ps.c 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=pickit3  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=0 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/ps.p1  ps.c 
 	@-${MV} ${OBJECTDIR}/ps.d ${OBJECTDIR}/ps.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/ps.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
@@ -93,7 +93,7 @@ ${OBJECTDIR}/_ext/1116578499/drive.p1: ../AutomatedCar.X/drive.c  nbproject/Make
 	@${MKDIR} "${OBJECTDIR}/_ext/1116578499" 
 	@${RM} ${OBJECTDIR}/_ext/1116578499/drive.p1.d 
 	@${RM} ${OBJECTDIR}/_ext/1116578499/drive.p1 
-	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=pickit3  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 -I"../../../data/apps/xc8/v1.35/include/plib" --warn=0 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/_ext/1116578499/drive.p1  ../AutomatedCar.X/drive.c 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=pickit3  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=0 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/_ext/1116578499/drive.p1  ../AutomatedCar.X/drive.c 
 	@-${MV} ${OBJECTDIR}/_ext/1116578499/drive.d ${OBJECTDIR}/_ext/1116578499/drive.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/_ext/1116578499/drive.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
@@ -101,7 +101,7 @@ ${OBJECTDIR}/_ext/1116578499/init.p1: ../AutomatedCar.X/init.c  nbproject/Makefi
 	@${MKDIR} "${OBJECTDIR}/_ext/1116578499" 
 	@${RM} ${OBJECTDIR}/_ext/1116578499/init.p1.d 
 	@${RM} ${OBJECTDIR}/_ext/1116578499/init.p1 
-	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=pickit3  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 -I"../../../data/apps/xc8/v1.35/include/plib" --warn=0 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/_ext/1116578499/init.p1  ../AutomatedCar.X/init.c 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=pickit3  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=0 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/_ext/1116578499/init.p1  ../AutomatedCar.X/init.c 
 	@-${MV} ${OBJECTDIR}/_ext/1116578499/init.d ${OBJECTDIR}/_ext/1116578499/init.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/_ext/1116578499/init.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
@@ -109,16 +109,40 @@ ${OBJECTDIR}/_ext/1116578499/common.p1: ../AutomatedCar.X/common.c  nbproject/Ma
 	@${MKDIR} "${OBJECTDIR}/_ext/1116578499" 
 	@${RM} ${OBJECTDIR}/_ext/1116578499/common.p1.d 
 	@${RM} ${OBJECTDIR}/_ext/1116578499/common.p1 
-	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=pickit3  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 -I"../../../data/apps/xc8/v1.35/include/plib" --warn=0 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/_ext/1116578499/common.p1  ../AutomatedCar.X/common.c 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=pickit3  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=0 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/_ext/1116578499/common.p1  ../AutomatedCar.X/common.c 
 	@-${MV} ${OBJECTDIR}/_ext/1116578499/common.d ${OBJECTDIR}/_ext/1116578499/common.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/_ext/1116578499/common.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/_ext/1116578499/common_adc.p1: ../AutomatedCar.X/common_adc.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/_ext/1116578499" 
+	@${RM} ${OBJECTDIR}/_ext/1116578499/common_adc.p1.d 
+	@${RM} ${OBJECTDIR}/_ext/1116578499/common_adc.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=pickit3  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=0 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/_ext/1116578499/common_adc.p1  ../AutomatedCar.X/common_adc.c 
+	@-${MV} ${OBJECTDIR}/_ext/1116578499/common_adc.d ${OBJECTDIR}/_ext/1116578499/common_adc.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/_ext/1116578499/common_adc.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/_ext/1116578499/zebra.p1: ../AutomatedCar.X/zebra.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/_ext/1116578499" 
+	@${RM} ${OBJECTDIR}/_ext/1116578499/zebra.p1.d 
+	@${RM} ${OBJECTDIR}/_ext/1116578499/zebra.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=pickit3  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=0 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/_ext/1116578499/zebra.p1  ../AutomatedCar.X/zebra.c 
+	@-${MV} ${OBJECTDIR}/_ext/1116578499/zebra.d ${OBJECTDIR}/_ext/1116578499/zebra.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/_ext/1116578499/zebra.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/_ext/1116578499/buzzer.p1: ../AutomatedCar.X/buzzer.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/_ext/1116578499" 
+	@${RM} ${OBJECTDIR}/_ext/1116578499/buzzer.p1.d 
+	@${RM} ${OBJECTDIR}/_ext/1116578499/buzzer.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  -D__DEBUG=1 --debugger=pickit3  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=0 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/_ext/1116578499/buzzer.p1  ../AutomatedCar.X/buzzer.c 
+	@-${MV} ${OBJECTDIR}/_ext/1116578499/buzzer.d ${OBJECTDIR}/_ext/1116578499/buzzer.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/_ext/1116578499/buzzer.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 else
 ${OBJECTDIR}/ps.p1: ps.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/ps.p1.d 
 	@${RM} ${OBJECTDIR}/ps.p1 
-	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 -I"../../../data/apps/xc8/v1.35/include/plib" --warn=0 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/ps.p1  ps.c 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=0 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/ps.p1  ps.c 
 	@-${MV} ${OBJECTDIR}/ps.d ${OBJECTDIR}/ps.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/ps.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
@@ -126,7 +150,7 @@ ${OBJECTDIR}/_ext/1116578499/drive.p1: ../AutomatedCar.X/drive.c  nbproject/Make
 	@${MKDIR} "${OBJECTDIR}/_ext/1116578499" 
 	@${RM} ${OBJECTDIR}/_ext/1116578499/drive.p1.d 
 	@${RM} ${OBJECTDIR}/_ext/1116578499/drive.p1 
-	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 -I"../../../data/apps/xc8/v1.35/include/plib" --warn=0 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/_ext/1116578499/drive.p1  ../AutomatedCar.X/drive.c 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=0 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/_ext/1116578499/drive.p1  ../AutomatedCar.X/drive.c 
 	@-${MV} ${OBJECTDIR}/_ext/1116578499/drive.d ${OBJECTDIR}/_ext/1116578499/drive.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/_ext/1116578499/drive.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
@@ -134,7 +158,7 @@ ${OBJECTDIR}/_ext/1116578499/init.p1: ../AutomatedCar.X/init.c  nbproject/Makefi
 	@${MKDIR} "${OBJECTDIR}/_ext/1116578499" 
 	@${RM} ${OBJECTDIR}/_ext/1116578499/init.p1.d 
 	@${RM} ${OBJECTDIR}/_ext/1116578499/init.p1 
-	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 -I"../../../data/apps/xc8/v1.35/include/plib" --warn=0 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/_ext/1116578499/init.p1  ../AutomatedCar.X/init.c 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=0 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/_ext/1116578499/init.p1  ../AutomatedCar.X/init.c 
 	@-${MV} ${OBJECTDIR}/_ext/1116578499/init.d ${OBJECTDIR}/_ext/1116578499/init.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/_ext/1116578499/init.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
@@ -142,9 +166,33 @@ ${OBJECTDIR}/_ext/1116578499/common.p1: ../AutomatedCar.X/common.c  nbproject/Ma
 	@${MKDIR} "${OBJECTDIR}/_ext/1116578499" 
 	@${RM} ${OBJECTDIR}/_ext/1116578499/common.p1.d 
 	@${RM} ${OBJECTDIR}/_ext/1116578499/common.p1 
-	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 -I"../../../data/apps/xc8/v1.35/include/plib" --warn=0 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/_ext/1116578499/common.p1  ../AutomatedCar.X/common.c 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=0 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/_ext/1116578499/common.p1  ../AutomatedCar.X/common.c 
 	@-${MV} ${OBJECTDIR}/_ext/1116578499/common.d ${OBJECTDIR}/_ext/1116578499/common.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/_ext/1116578499/common.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/_ext/1116578499/common_adc.p1: ../AutomatedCar.X/common_adc.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/_ext/1116578499" 
+	@${RM} ${OBJECTDIR}/_ext/1116578499/common_adc.p1.d 
+	@${RM} ${OBJECTDIR}/_ext/1116578499/common_adc.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=0 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/_ext/1116578499/common_adc.p1  ../AutomatedCar.X/common_adc.c 
+	@-${MV} ${OBJECTDIR}/_ext/1116578499/common_adc.d ${OBJECTDIR}/_ext/1116578499/common_adc.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/_ext/1116578499/common_adc.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/_ext/1116578499/zebra.p1: ../AutomatedCar.X/zebra.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/_ext/1116578499" 
+	@${RM} ${OBJECTDIR}/_ext/1116578499/zebra.p1.d 
+	@${RM} ${OBJECTDIR}/_ext/1116578499/zebra.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=0 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/_ext/1116578499/zebra.p1  ../AutomatedCar.X/zebra.c 
+	@-${MV} ${OBJECTDIR}/_ext/1116578499/zebra.d ${OBJECTDIR}/_ext/1116578499/zebra.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/_ext/1116578499/zebra.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/_ext/1116578499/buzzer.p1: ../AutomatedCar.X/buzzer.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}/_ext/1116578499" 
+	@${RM} ${OBJECTDIR}/_ext/1116578499/buzzer.p1.d 
+	@${RM} ${OBJECTDIR}/_ext/1116578499/buzzer.p1 
+	${MP_CC} --pass1 $(MP_EXTRA_CC_PRE) --chip=$(MP_PROCESSOR_OPTION) -Q -G  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=0 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    -o${OBJECTDIR}/_ext/1116578499/buzzer.p1  ../AutomatedCar.X/buzzer.c 
+	@-${MV} ${OBJECTDIR}/_ext/1116578499/buzzer.d ${OBJECTDIR}/_ext/1116578499/buzzer.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/_ext/1116578499/buzzer.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 endif
 
@@ -157,15 +205,15 @@ endif
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: link
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-dist/${CND_CONF}/${IMAGE_TYPE}/ProximitySensor.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk  ../../../data/apps/xc8/v1.35/lib/pic18-plib-c18-18f45j50.lpp  
+dist/${CND_CONF}/${IMAGE_TYPE}/ProximitySensor.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk    
 	@${MKDIR} dist/${CND_CONF}/${IMAGE_TYPE} 
-	${MP_CC} $(MP_EXTRA_LD_PRE) --chip=$(MP_PROCESSOR_OPTION) -G -mdist/${CND_CONF}/${IMAGE_TYPE}/ProximitySensor.X.${IMAGE_TYPE}.map  -D__DEBUG=1 --debugger=pickit3  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 -I"../../../data/apps/xc8/v1.35/include/plib" --warn=0 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"     --rom=default,-7dc0-7fff --ram=default,-3f4-3ff,-f9c-f9c,-fd4-fd4,-fdb-fdf,-fe3-fe7,-feb-fef,-ffd-fff --memorysummary dist/${CND_CONF}/${IMAGE_TYPE}/memoryfile.xml -odist/${CND_CONF}/${IMAGE_TYPE}/ProximitySensor.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}    ..\..\..\data\apps\xc8\v1.35\lib\pic18-plib-c18-18f45j50.lpp 
+	${MP_CC} $(MP_EXTRA_LD_PRE) --chip=$(MP_PROCESSOR_OPTION) -G -mdist/${CND_CONF}/${IMAGE_TYPE}/ProximitySensor.X.${IMAGE_TYPE}.map  -D__DEBUG=1 --debugger=pickit3  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=0 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"     --rom=default,-7dc0-7fff --ram=default,-3f4-3ff,-f9c-f9c,-fd4-fd4,-fdb-fdf,-fe3-fe7,-feb-fef,-ffd-fff --memorysummary dist/${CND_CONF}/${IMAGE_TYPE}/memoryfile.xml -odist/${CND_CONF}/${IMAGE_TYPE}/ProximitySensor.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}     
 	@${RM} dist/${CND_CONF}/${IMAGE_TYPE}/ProximitySensor.X.${IMAGE_TYPE}.hex 
 	
 else
-dist/${CND_CONF}/${IMAGE_TYPE}/ProximitySensor.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk  ../../../data/apps/xc8/v1.35/lib/pic18-plib-c18-18f45j50.lpp 
+dist/${CND_CONF}/${IMAGE_TYPE}/ProximitySensor.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk   
 	@${MKDIR} dist/${CND_CONF}/${IMAGE_TYPE} 
-	${MP_CC} $(MP_EXTRA_LD_PRE) --chip=$(MP_PROCESSOR_OPTION) -G -mdist/${CND_CONF}/${IMAGE_TYPE}/ProximitySensor.X.${IMAGE_TYPE}.map  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 -I"../../../data/apps/xc8/v1.35/include/plib" --warn=0 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    --memorysummary dist/${CND_CONF}/${IMAGE_TYPE}/memoryfile.xml -odist/${CND_CONF}/${IMAGE_TYPE}/ProximitySensor.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}    ..\..\..\data\apps\xc8\v1.35\lib\pic18-plib-c18-18f45j50.lpp 
+	${MP_CC} $(MP_EXTRA_LD_PRE) --chip=$(MP_PROCESSOR_OPTION) -G -mdist/${CND_CONF}/${IMAGE_TYPE}/ProximitySensor.X.${IMAGE_TYPE}.map  --double=24 --float=24 --emi=wordwrite --opt=default,+asm,+asmfile,-speed,+space,-debug --addrqual=ignore --mode=free -P -N255 --warn=0 --asmlist --summary=default,-psect,-class,+mem,-hex,-file --output=default,-inhx032 --runtime=default,+clear,+init,-keep,-no_startup,-download,+config,+clib,-plib --output=-mcof,+elf:multilocs --stack=compiled:auto:auto:auto "--errformat=%f:%l: error: (%n) %s" "--warnformat=%f:%l: warning: (%n) %s" "--msgformat=%f:%l: advisory: (%n) %s"    --memorysummary dist/${CND_CONF}/${IMAGE_TYPE}/memoryfile.xml -odist/${CND_CONF}/${IMAGE_TYPE}/ProximitySensor.X.${IMAGE_TYPE}.${DEBUGGABLE_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}     
 	
 endif
 

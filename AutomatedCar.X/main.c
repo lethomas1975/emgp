@@ -21,6 +21,6 @@ void main(void) {
     
     while (1) {
         proximityDetection();
-        zebraDetected();
+        //zebraDetected();
     }
 }

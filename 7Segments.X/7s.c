@@ -24,10 +24,12 @@ void main(void) {
     while (1) {
         for (int i = 0; i < 10; i++) {
             incrementAndDisplay();
+            delayInMs(100);
         }
         increment();
         for (int i = 0; i < 10; i++) {
             decrementAndDisplay();
+            delayInMs(100);
         }
         resetCounter();
     }

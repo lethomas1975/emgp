@@ -22,18 +22,13 @@ void main(void) {
     init();
     while (1) {
         forward();
-        delayInMs(100);
         left();
-        delayInMs(100);
         leftBackward();
-        delayInMs(100);
         right();
-        delayInMs(100);
         rightBackward();
-        delayInMs(100);
         backward();
-        delayInMs(100);
+        forward();
         uturn();
-        delayInMs(100);
+        delayInMs(1000);
     }
 }
