@@ -22,12 +22,12 @@ int STEP_DELAY = 1;
 int STEPS_PER_REV = (int) (360.0 / ((5.625/64.0) * 8.0)) / 4; // datasheet angle per step 5.625/64
 // we will not do a full revolution so can detect obstacles faster.
 
-unsigned char FWD[9] = { 0b10000001, 0b11000011, 0b01000010, 0b01100110, 0b00100100, 0b00111100, 0b00011000, 0b10011001, '\0' };
-unsigned char LFT[9] = { 0b10000000, 0b11000000, 0b01000000, 0b01100000, 0b00100000, 0b00110000, 0b00010000, 0b10010000, '\0'};
-unsigned char RGT[9] = { 0b00000001, 0b00000011, 0b00000010, 0b00000110, 0b00000100, 0b00001100, 0b00001000, 0b00001001, '\0'};
-unsigned char BWD[9] = { 0b00011000, 0b00111100, 0b00100100, 0b01100110, 0b01000010, 0b11000011, 0b10000001, 0b10011001, '\0'};
-unsigned char ULFT[9] = { 0b10001000, 0b11001100, 0b01000100, 0b01100110, 0b00100010, 0b00110011, 0b00010001, 0b10011001, '\0'};
-unsigned char URGT[9] = { 0b00010001, 0b00110011, 0b00100010, 0b01100110, 0b01000100, 0b11001100, 0b10001000, 0b10011001, '\0'};
+unsigned char FWD[] = { 0b10000001, 0b11000011, 0b01000010, 0b01100110, 0b00100100, 0b00111100, 0b00011000, 0b10011001 };
+unsigned char LFT[] = { 0b10000000, 0b11000000, 0b01000000, 0b01100000, 0b00100000, 0b00110000, 0b00010000, 0b10010000 };
+unsigned char RGT[] = { 0b00000001, 0b00000011, 0b00000010, 0b00000110, 0b00000100, 0b00001100, 0b00001000, 0b00001001 };
+unsigned char BWD[] = { 0b00011000, 0b00111100, 0b00100100, 0b01100110, 0b01000010, 0b11000011, 0b10000001, 0b10011001 };
+unsigned char ULFT[] = { 0b10001000, 0b11001100, 0b01000100, 0b01100110, 0b00100010, 0b00110011, 0b00010001, 0b10011001 };
+unsigned char URGT[] = { 0b00010001, 0b00110011, 0b00100010, 0b01100110, 0b01000100, 0b11001100, 0b10001000, 0b10011001 };
 
 int convertVoltageToDigital(int adcDigital);
 
@@ -36,7 +36,9 @@ int convertVoltageToDigital(int adcDigital);
  * clockwise, 0 for anticlockwise and 1 for clockwise
  * led, 0 for no LED, 1 for left LED, 2 for right LED and 3 for both
  */
-int rotate(unsigned char direction[], int clockwise, int rev, int led);
+int rotate(unsigned char direction[], int clockwise, int rev, int led, int move);
+
+int canContinue(int direction);
 
 int convertVoltageToDigital(int adcDigital) {
     float voltage = ((float)adcDigital)*5.0/1023.0;
@@ -46,10 +48,13 @@ int convertVoltageToDigital(int adcDigital) {
     return 0;
 }
 
-int rotate(unsigned char direction[], int clockwise, int rev, int led) {
+int rotate(unsigned char direction[], int clockwise, int rev, int led, int move) {
     LEDRPin = (led & 0x0002) >> 1;
     LEDPin = led & 0x0001;
     for (int j = 0; j < rev; j++) {
+        if ((j % 6) == 0 && !canContinue(move)) {
+            break;
+        }
         for (int i = 0; i < 8; i++) {
             int k = i;
             if (clockwise == 0) {
@@ -65,32 +70,58 @@ int rotate(unsigned char direction[], int clockwise, int rev, int led) {
 }
 
 void left() {
-    rotate(LFT, 1, (STEPS_PER_REV + 1) * 4, 1);
+    rotate(LFT, 1, (STEPS_PER_REV + 1) * 4, 1, 1);
 }
 
-void leftBackward() {
-    rotate(LFT, 0, (STEPS_PER_REV + 1) * 4, 1);
+void slightLeft() {
+    rotate(LFT, 1, STEPS_PER_REV, 1, 2);
 }
 
 void right() {
-    rotate(RGT, 1, (STEPS_PER_REV + 1) * 4, 2);
+    rotate(RGT, 1, (STEPS_PER_REV + 1) * 4, 2, 3);
 }
 
-void rightBackward() {
-    rotate(RGT, 0, (STEPS_PER_REV + 1) * 4, 2);
+void slightRight() {
+    rotate(RGT, 1, STEPS_PER_REV, 2, 4);
 }
 
 void forward() {
-    rotate(FWD, 1, STEPS_PER_REV / 2, 0);
+    rotate(FWD, 1, STEPS_PER_REV / 2, 0, -1);
 }
 
 void backward() {
-    rotate(BWD, 1, STEPS_PER_REV * 4, 3);
+    rotate(BWD, 1, STEPS_PER_REV * 4, 3, -1);
+}
+
+void slightBackward() {
+    rotate(BWD, 1, STEPS_PER_REV * 2, 3, -1);
 }
 
 void uturn() {
-    rotate(ULFT, 1, (STEPS_PER_REV + 1) * 4, 1);
     uturnBool = ++uturnBool % 2;
+    rotate(ULFT, 1, (STEPS_PER_REV + 1) * 4, 1, 5);
+}
+
+
+int canContinue(int direction) {
+    if (direction == -1) {
+        return 1;
+    }
+    int ps1 = convertVoltageToDigital(readChannel(0));
+    int ps2 = convertVoltageToDigital(readChannel(1));
+    int ps3 = convertVoltageToDigital(readChannel(2));
+    switch (direction) {
+        case 0: // forward
+            return ps1 == 0;
+        case 5: //uturn
+        case 1: // left
+        case 2: // slight left
+            return ps2 == 0;
+        case 3: // right
+        case 4: // slight right
+            return ps3 == 0;
+    }
+    return 1;
 }
 
 void proximityDetection() {
@@ -99,14 +130,18 @@ void proximityDetection() {
     int ps1 = convertVoltageToDigital(readChannel(0));
     int ps2 = convertVoltageToDigital(readChannel(1));
     int ps3 = convertVoltageToDigital(readChannel(2));
-    int forwardBool = ps1 == 0;
-    int leftBool = ps1 == 1 && ps2 == 0;
+    int forwardBool = ps1 == 0 && ps2 == 0 && ps3 == 0;
+    int leftBool = (ps1 == 1 && ps2 == 0 && ps3 == 0) || (ps1 == 1 && ps2 == 0 && ps3 == 1);
+    int slightLeftBool = ps1 == 0 && ps2 == 0 && ps3 == 1;
     int rightBool = ps1 == 1 && ps2 == 1 && ps3 == 0;
-    int uturnBool = ps1 == 1 && ps2 == 1 && ps3 == 1;
+    int slightRightBool = ps1 == 0 && ps2 == 1 && ps3 == 0;
+    int uturnBool = (ps1 == 1 && ps2 == 1 && ps3 == 1) || (ps1 == 0 && ps2 == 1 && ps3 ==1);
 #else
     int forwardBool = PS1In == 0;
     int leftBool = PS1In == 1 && PS2In == 0;
+    int slightLeftBool = PS3In == 1;
     int rightBool = PS1In == 1 && PS2In == 1 && PS3In == 0;
+    int slightRightBool = PS2In == 1;
     int uturnBool = PS1In == 1 && PS2In == 1 && PS3In == 1;
 #endif
     if (forwardBool) {
@@ -114,12 +149,20 @@ void proximityDetection() {
     } else {
         buzz();
         buzzOff();
-
-        backward();        
+        
+        if (!slightLeftBool && !slightRightBool) {
+            backward();            
+        } else {
+            slightBackward();
+        }
         if (leftBool) {
             left();
+        } else if (slightLeftBool) {
+            slightLeft();
         } else if (rightBool) {
             right();
+        } else if (slightRightBool){
+            slightRight();
         } else if (uturnBool) {
             uturn();
         }

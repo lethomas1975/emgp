@@ -27,11 +27,12 @@
  */
 
 void left();
-void leftBackward();
+void slightLeft();
 void right();
-void rightBackward();
+void slightRight();
 void forward();
 void backward();
+void slightBackward();
 void uturn();
 
 void proximityDetection();
