@@ -23,9 +23,7 @@ void main(void) {
     while (1) {
         forward();
         left();
-        leftBackward();
         right();
-        rightBackward();
         backward();
         forward();
         uturn();

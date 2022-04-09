@@ -51,7 +51,17 @@ void setSegmentByBit(int a, int b, int c, int d, int e, int f, int g) {
     SevenSEGOut5 = d;
     SevenSEGOut6 = c;
 }
-
+// a | b | c | d | e | f | g | display
+// 1 | 1 | 1 | 1 | 1 | 1 | 0 | 0
+// 0 | 1 | 1 | 0 | 0 | 0 | 0 | 1
+// 1 | 1 | 0 | 1 | 1 | 0 | 1 | 2
+// 1 | 1 | 1 | 1 | 0 | 0 | 1 | 3
+// 0 | 1 | 1 | 0 | 0 | 1 | 1 | 4
+// 1 | 0 | 1 | 1 | 0 | 1 | 1 | 5
+// 1 | 0 | 1 | 1 | 1 | 1 | 1 | 6
+// 1 | 1 | 1 | 0 | 0 | 0 | 0 | 7
+// 1 | 1 | 1 | 1 | 1 | 1 | 1 | 8
+// 1 | 1 | 1 | 1 | 0 | 1 | 1 | 9
 void setSevenSegment(int display) {
     int tmp = abs(display) % 10;
     switch (tmp) {
