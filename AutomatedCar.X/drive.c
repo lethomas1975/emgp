@@ -31,7 +31,6 @@ unsigned char RGT[] = { 0b00000001, 0b00000011, 0b00000010, 0b00000110, 0b000001
 unsigned char ULFT[] = { 0b10001000, 0b11001100, 0b01000100, 0b01100110, 0b00100010, 0b00110011, 0b00010001, 0b10011001 };
 unsigned char URGT[] = { 0b00010001, 0b00110011, 0b00100010, 0b01100110, 0b01000100, 0b11001100, 0b10001000, 0b10011001 };
 
-int convertVoltageToDigital(int adcDigital);
 
 /*
  * direction is one of the array above,
