@@ -28,11 +28,9 @@ int STEPS_PER_REV = (int) (360.0 / ((5.625/64.0) * 8.0)) / 4; // datasheet angle
 unsigned char FWD[] = { 0b10000001, 0b11000011, 0b01000010, 0b01100110, 0b00100100, 0b00111100, 0b00011000, 0b10011001 };
 unsigned char LFT[] = { 0b10000000, 0b11000000, 0b01000000, 0b01100000, 0b00100000, 0b00110000, 0b00010000, 0b10010000 };
 unsigned char RGT[] = { 0b00000001, 0b00000011, 0b00000010, 0b00000110, 0b00000100, 0b00001100, 0b00001000, 0b00001001 };
-unsigned char BWD[] = { 0b00011000, 0b00111100, 0b00100100, 0b01100110, 0b01000010, 0b11000011, 0b10000001, 0b10011001 };
 unsigned char ULFT[] = { 0b10001000, 0b11001100, 0b01000100, 0b01100110, 0b00100010, 0b00110011, 0b00010001, 0b10011001 };
 unsigned char URGT[] = { 0b00010001, 0b00110011, 0b00100010, 0b01100110, 0b01000100, 0b11001100, 0b10001000, 0b10011001 };
 
-int convertVoltageToDigital(int adcDigital);
 
 /*
  * direction is one of the array above,
@@ -96,11 +94,11 @@ void forward() {
 }
 
 void backward() {
-    rotate(BWD, 1, STEPS_PER_REV * 4, 3, -1);
+    rotate(FWD, 0, STEPS_PER_REV * 4, 3, -1);
 }
 
 void slightBackward() {
-    rotate(BWD, 1, STEPS_PER_REV * 2, 3, -1);
+    rotate(FWD, 0, STEPS_PER_REV * 2, 3, -1);
 }
 
 void uturn() {

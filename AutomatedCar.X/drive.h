@@ -37,6 +37,8 @@ void uturn();
 
 void proximityDetection();
 
+int convertVoltageToDigital(int adcDigital);
+
 int uturnBool = 0;
 
 // This is a guard condition so that contents of this file are not included

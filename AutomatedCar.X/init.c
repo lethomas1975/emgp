@@ -16,7 +16,7 @@ void initADC();
 
 void initADC() {
     ADCON1 = 0x0C; // AN0, AN1 and AN2 use Analog
-    ADCON2 = 0b10110010; // right alignment, 16TAD and FOSC/32
+    ADCON2 = 0b10001001; // right alignment, 2TAD and FOSC/8
     ADRESH=0;
     ADRESL=0;
 }
