@@ -108,7 +108,7 @@ extern "C" {
 #define SevenSEGTrisOut5 TRISEbits.TRISE1
 #define SevenSEGTrisOut6 TRISEbits.TRISE2
 
-// deinition for the optical sensor
+// definition for the optical sensor
 #define OS1In PORTBbits.RB0
 #define OS1TrisIn TRISBbits.RB0
 
@@ -123,7 +123,7 @@ extern "C" {
 #define LEDPin LATCbits.LATC2       	// Define LEDPin as PORT C Pin 2 for left turn and other tests
 #define LEDTris TRISCbits.TRISC2    	// Define LEDTris as TRISC Pin 2 as output mode
 
-// use ADC comment the line below to use digital
+// use ADC, comment the line below to use digital
 #define C2_USE_ADC
 
 //definition for the Proximity Sensor 1, 2 and 3
@@ -144,6 +144,6 @@ extern "C" {
 void init(void);
 
 // global variable whether to increment the 7-Segment counter or decrement.
-// o to increment and 1 to decrement.
+// 0 to increment and 1 to decrement.
 int incrementing = 0;
 #endif

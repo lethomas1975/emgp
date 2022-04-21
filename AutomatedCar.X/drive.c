@@ -108,7 +108,7 @@ int canContinue(int direction) {
     switch (direction) {
         case 0: // forward
             #ifdef C2_USE_ADC
-                ps1 = convertDigitalToVoltage(readChannel(0));
+                ps1 = convertVoltageToDigital(readChannel(0));
             #else
                 ps1 = PS1In;
             #endif
@@ -117,7 +117,7 @@ int canContinue(int direction) {
         case 1: // left
         case 2: // slight left
             #ifdef C2_USE_ADC
-                ps2 = convertDigitalToVoltage(readChannel(1));
+                ps2 = convertVoltageToDigital(readChannel(1));
             #else
                 ps2 = PS2In;
             #endif
@@ -125,7 +125,7 @@ int canContinue(int direction) {
         case 3: // right
         case 4: // slight right
             #ifdef C2_USE_ADC
-                ps3 = convertDigitalToVoltage(readChannel(2));
+                ps3 = convertVoltageToDigital(readChannel(2));
             #else
                 ps3 = PS3In;
             #endif
@@ -135,7 +135,7 @@ int canContinue(int direction) {
 }
 
 #ifdef C2_USE_ADC
-int convertDigitalToVoltage(int adcDigital) {
+int convertVoltageToDigital(int adcDigital) {
     float voltage = ((float)adcDigital) * VREF/1023.0f;
     if (voltage >= 2.5) {
         return 1;
@@ -148,9 +148,9 @@ int convertDigitalToVoltage(int adcDigital) {
 void proximityDetection(void) {
     
 #ifdef C2_USE_ADC
-    int ps1 = convertDigitalToVoltage(readChannel(0));
-    int ps2 = convertDigitalToVoltage(readChannel(1));
-    int ps3 = convertDigitalToVoltage(readChannel(2));
+    int ps1 = convertVoltageToDigital(readChannel(0));
+    int ps2 = convertVoltageToDigital(readChannel(1));
+    int ps3 = convertVoltageToDigital(readChannel(2));
 #else
     int ps1 = PS1In;
     int ps2 = PS2In;

@@ -94,7 +94,7 @@ void uturn(void);
 void proximityDetection(void);
 
 #ifdef C2_USE_ADC
-    int convertDigitalToVoltage(int adcDigital);
+    int convertVoltageToDigital(int adcDigital);
 #endif
 
 #endif
