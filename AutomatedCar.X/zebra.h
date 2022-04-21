@@ -26,14 +26,6 @@
  * Revision history: 
  */
 
-void resetCounter();
-void increment();
-void incrementAndDisplay();
-void decrement();
-void decrementAndDisplay();
-void zebraDetected();
-void setSevenSegment(int count);
-
 // This is a guard condition so that contents of this file are not included
 // more than once.  
 #ifndef XC_HEADER_TEMPLATE_H
@@ -85,3 +77,17 @@ extern "C" {
 
 #endif	/* XC_HEADER_TEMPLATE_H */
 
+#ifndef ZEBRA_H
+#define	ZEBRA_H
+
+// functions for 7-Segment
+void resetCounter(void);            // reset the 7-Segment counter
+void increment(void);               // increment the 7-Segment counter
+void incrementAndDisplay(void);     // increment the 7-Segment counter and display the value on the LED
+void decrement(void);               // decrement the 7-Segment counter
+void decrementAndDisplay(void);     // decrement the 7-Segment counter and display the value on the LED
+void setSevenSegment(int count);    // display the 7-Segment on the LED
+
+// functions for Optical Sensor
+void zebraDetected(void);
+#endif

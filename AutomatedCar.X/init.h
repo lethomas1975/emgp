@@ -25,67 +25,6 @@
  * Comments:
  * Revision history: 
  */
-#include <stdio.h>
-#include <stdlib.h>
-#include <xc.h>                     //xc8 compiler header file.
-#include <pic18f4550.h>
-
-//#pragma config FOSC = INTOSC_HS  	// Internal oscillator, HS used by USB.
-#pragma config FOSC = INTOSCIO_EC   	// Internal oscillator, port function on RA6, EC used by USB. 
-#pragma config FCMEN = OFF      // Fail-Safe Clock Monitor Enable bit (Fail-Safe Clock Monitor disabled)
-#pragma config IESO = OFF       // Internal/External Oscillator Switchover bit (Oscillator Switchover mode disabled)
-#pragma config WDT = OFF        // Disable watchdog timer
-
-#define SMOut LATD
-#define SMTrisOut TRISD
-
-#define SevenSEGOut0 LATCbits.LATC7 // RC7 b
-#define SevenSEGOut1 LATBbits.LATB1 // RB1 a
-#define SevenSEGOut2 LATBbits.LATB2 // RB2 f
-#define SevenSEGOut3 LATBbits.LATB3 // RB3 g
-#define SevenSEGOut4 LATEbits.LATE0 // RE0 e
-#define SevenSEGOut5 LATEbits.LATE1 // RE1 d
-#define SevenSEGOut6 LATEbits.LATE2 // RE2 c
-#define SevenSEGTrisOut0 TRISCbits.TRISC7
-#define SevenSEGTrisOut1 TRISBbits.TRISB1
-#define SevenSEGTrisOut2 TRISBbits.TRISB2
-#define SevenSEGTrisOut3 TRISBbits.TRISB3
-#define SevenSEGTrisOut4 TRISEbits.TRISE0
-#define SevenSEGTrisOut5 TRISEbits.TRISE1
-#define SevenSEGTrisOut6 TRISEbits.TRISE2
-
-#define OS1In PORTBbits.RB0
-#define OS1TrisIn TRISBbits.RB0
-
-#define BUZZOut LATCbits.LATC1
-#define BUZZTrisOut TRISCbits.TRISC1
-
-
-// test led pin
-#define LEDRPin LATCbits.LATC0       	// Define LEDPin as PORT C Pin 0 for right turn
-#define LEDRTris TRISCbits.TRISC0    	// Define LEDTris as TRISC Pin 0 as output mode
-#define LEDPin LATCbits.LATC2       	// Define LEDPin as PORT C Pin 2 for left turn and other tests
-#define LEDTris TRISCbits.TRISC2    	// Define LEDTris as TRISC Pin 2 as output mode
-
-// use ADC comment the line below to use digital
-#define C2_USE_ADC
-
-#ifdef C2_USE_ADC
-    #define PS1In PORTAbits.AN0 // front
-    #define PS2In PORTAbits.AN1 // left
-    #define PS3In PORTAbits.AN2 // right
-#else
-    #define PS1In PORTAbits.RA0 // front
-    #define PS2In PORTAbits.RA1 // left
-    #define PS3In PORTAbits.RA2 // right
-#endif
-
-#define PS1TrisIn TRISAbits.TRISA0
-#define PS2TrisIn TRISAbits.TRISA1
-#define PS3TrisIn TRISAbits.TRISA2
-
-void init();
-
 
 // This is a guard condition so that contents of this file are not included
 // more than once.  
@@ -93,6 +32,7 @@ void init();
 #define	XC_HEADER_TEMPLATE_H
 
 // TODO Insert appropriate #include <>
+#include <xc.h> // include processor files - each processor file is guarded.  
 
 // TODO Insert C++ class definitions if appropriate
 
@@ -135,3 +75,71 @@ extern "C" {
 
 #endif	/* XC_HEADER_TEMPLATE_H */
 
+#ifndef INIT_H
+#define INIT_H
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <pic18f4550.h>
+
+#pragma config FOSC = INTOSCIO_EC   	// Internal oscillator, port function on RA6, EC used by USB. 
+#pragma config FCMEN = OFF      // Fail-Safe Clock Monitor Enable bit (Fail-Safe Clock Monitor disabled)
+#pragma config IESO = OFF       // Internal/External Oscillator Switchover bit (Oscillator Switchover mode disabled)
+#pragma config WDT = OFF        // Disable watchdog timer
+
+// definition for Stepper Motor 1 and 2 (left and right)
+// SM1 low bits SM2 high bits
+#define SMOut LATD
+#define SMTrisOut TRISD
+
+// definition for the 7-Segment
+#define SevenSEGOut0 LATCbits.LATC7 // RC7 segment b
+#define SevenSEGOut1 LATBbits.LATB1 // RB1 segment a
+#define SevenSEGOut2 LATBbits.LATB2 // RB2 segment f
+#define SevenSEGOut3 LATBbits.LATB3 // RB3 segment g
+#define SevenSEGOut4 LATEbits.LATE0 // RE0 segment e
+#define SevenSEGOut5 LATEbits.LATE1 // RE1 segment d
+#define SevenSEGOut6 LATEbits.LATE2 // RE2 segment c
+#define SevenSEGTrisOut0 TRISCbits.TRISC7
+#define SevenSEGTrisOut1 TRISBbits.TRISB1
+#define SevenSEGTrisOut2 TRISBbits.TRISB2
+#define SevenSEGTrisOut3 TRISBbits.TRISB3
+#define SevenSEGTrisOut4 TRISEbits.TRISE0
+#define SevenSEGTrisOut5 TRISEbits.TRISE1
+#define SevenSEGTrisOut6 TRISEbits.TRISE2
+
+// deinition for the optical sensor
+#define OS1In PORTBbits.RB0
+#define OS1TrisIn TRISBbits.RB0
+
+// definition for the Buzzer
+#define BUZZOut LATCbits.LATC1
+#define BUZZTrisOut TRISCbits.TRISC1
+
+
+// test led pin
+#define LEDRPin LATCbits.LATC0       	// Define LEDPin as PORT C Pin 0 for right turn
+#define LEDRTris TRISCbits.TRISC0    	// Define LEDTris as TRISC Pin 0 as output mode
+#define LEDPin LATCbits.LATC2       	// Define LEDPin as PORT C Pin 2 for left turn and other tests
+#define LEDTris TRISCbits.TRISC2    	// Define LEDTris as TRISC Pin 2 as output mode
+
+// use ADC comment the line below to use digital
+#define C2_USE_ADC
+
+//definition for the Proximity Sensor 1, 2 and 3
+#ifdef C2_USE_ADC
+    #define PS1In PORTAbits.AN0 // front
+    #define PS2In PORTAbits.AN1 // left
+    #define PS3In PORTAbits.AN2 // right
+#else
+    #define PS1In PORTAbits.RA0 // front
+    #define PS2In PORTAbits.RA1 // left
+    #define PS3In PORTAbits.RA2 // right
+#endif
+#define PS1TrisIn TRISAbits.TRISA0
+#define PS2TrisIn TRISAbits.TRISA1
+#define PS3TrisIn TRISAbits.TRISA2
+
+// prototype of the init function
+void init(void);
+#endif

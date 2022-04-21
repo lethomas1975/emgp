@@ -26,9 +26,6 @@
  * Revision history: 
  */
 
-void buzz();
-void buzzOff();
-
 // This is a guard condition so that contents of this file are not included
 // more than once.  
 #ifndef XC_HEADER_TEMPLATE_H
@@ -78,3 +75,9 @@ extern "C" {
 #endif /* __cplusplus */
 
 #endif	/* XC_HEADER_TEMPLATE_H */
+
+#ifndef BUZZER_H
+#define BUZZER_H
+void buzz(void);
+void buzzOff(void);
+#endif

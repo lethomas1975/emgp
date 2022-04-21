@@ -5,10 +5,10 @@
  * Created on 05 April 2022, 23:43
  */
 
-#include <xc.h>
-#include <pic18f4550.h>
+#include "init.h"
+#include "common_adc.h"
 
-int readChannel(int channel) {
+int readChannel(unsigned char channel) {
     ADCON0bits.CHS0 = 0;
     ADCON0bits.CHS1 = 0;
     ADCON0bits.CHS2 = 0;

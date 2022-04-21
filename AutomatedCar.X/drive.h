@@ -26,21 +26,6 @@
  * Revision history: 
  */
 
-void left();
-void slightLeft();
-void right();
-void slightRight();
-void forward();
-void backward();
-void slightBackward();
-void uturn();
-
-void proximityDetection();
-
-int convertVoltageToDigital(int adcDigital);
-
-int uturnBool = 0;
-
 // This is a guard condition so that contents of this file are not included
 // more than once.  
 #ifndef XC_HEADER_TEMPLATE_H
@@ -91,3 +76,27 @@ extern "C" {
 #endif /* __cplusplus */
 
 #endif	/* XC_HEADER_TEMPLATE_H */
+
+#ifndef DRIVE_H
+#define DRIVE_H
+
+// functions for the Stepper Motors
+void left(void);
+void slightLeft(void);
+void right(void);
+void slightRight(void);
+void forward(void);
+void backward(void);
+void slightBackward(void);
+void uturn(void);
+
+// functions for the Proximity sensors
+void proximityDetection(void);
+
+#ifdef C2_USE_ADC
+    int convertDigitalToVoltage(int adcDigital);
+#endif
+
+int incrementing = 0;
+#endif
+

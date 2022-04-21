@@ -25,10 +25,6 @@
  * Comments:
  * Revision history: 
  */
-#define _XTAL_FREQ 8000000              // for __delay_ms() function
-
-void delayInMs(int ms);
-void delayInUs(int us);
 
 // This is a guard condition so that contents of this file are not included
 // more than once.  
@@ -79,3 +75,11 @@ extern "C" {
 #endif /* __cplusplus */
 
 #endif	/* XC_HEADER_TEMPLATE_H */
+
+#ifndef COMMON_H
+#define COMMON_H
+#define _XTAL_FREQ 8000000              // for __delay_ms() function
+
+void delayInMs(int ms);
+void delayInUs(int us);
+#endif

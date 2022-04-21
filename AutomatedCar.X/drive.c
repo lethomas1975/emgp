@@ -5,17 +5,14 @@
  * Created on 27 March 2022, 18:41
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <xc.h>
-#include <pic18f4550.h>
-
 #include "init.h"
 #include "common.h"
 #include "common_adc.h"
 #include "buzzer.h"
 #include "drive.h"
 #include "zebra.h"
+
+const float VREF = 5.0f;
 
 int direction = 0;
 int STEP_DELAY = 1;
@@ -40,19 +37,11 @@ unsigned char URGT[] = { 0b00010001, 0b00110011, 0b00100010, 0b01100110, 0b01000
  * led, 0 for no LED, 1 for left LED, 2 for right LED and 3 for both
  * move is the current move (left, right, front back to check 
  */
-int rotate(unsigned char direction[], int clockwise, int rev, int led, int move);
+void rotate(unsigned char direction[], int clockwise, int rev, int led, int move);
 
 int canContinue(int direction);
 
-int convertVoltageToDigital(int adcDigital) {
-    float voltage = ((float)adcDigital)*5.0/1023.0;
-    if (voltage >= 2.5) {
-        return 1;
-    }
-    return 0;
-}
-
-int rotate(unsigned char direction[], int clockwise, int rev, int led, int move) {
+void rotate(unsigned char direction[], int clockwise, int rev, int led, int move) {
     LEDRPin = (led & 0x0002) >> 1;
     LEDPin = led & 0x0001;
     for (int j = 0; j < rev; j++) {
@@ -74,36 +63,36 @@ int rotate(unsigned char direction[], int clockwise, int rev, int led, int move)
     LEDPin = 0;
 }
 
-void left() {
+void left(void) {
     rotate(LFT, 1, (STEPS_PER_REV + 1) * 4, 1, 1);
 }
 
-void slightLeft() {
+void slightLeft(void) {
     rotate(LFT, 1, STEPS_PER_REV, 1, 2);
 }
 
-void right() {
+void right(void) {
     rotate(RGT, 1, (STEPS_PER_REV + 1) * 4, 2, 3);
 }
 
-void slightRight() {
+void slightRight(void) {
     rotate(RGT, 1, STEPS_PER_REV, 2, 4);
 }
 
-void forward() {
+void forward(void) {
     rotate(FWD, 1, STEPS_PER_REV / 2, 0, -1);
 }
 
-void backward() {
+void backward(void) {
     rotate(BWD, 1, STEPS_PER_REV * 4, 3, -1);
 }
 
-void slightBackward() {
+void slightBackward(void) {
     rotate(BWD, 1, STEPS_PER_REV * 2, 3, -1);
 }
 
-void uturn() {
-    uturnBool = ++uturnBool % 2;
+void uturn(void) {
+    incrementing = (incrementing + 1) % 2;
     rotate(ULFT, 1, (STEPS_PER_REV + 1) * 4, 1, 5);
 }
 
@@ -112,9 +101,9 @@ int canContinue(int direction) {
     if (direction == -1) {
         return 1;
     }
-    int ps1 = convertVoltageToDigital(readChannel(0));
-    int ps2 = convertVoltageToDigital(readChannel(1));
-    int ps3 = convertVoltageToDigital(readChannel(2));
+    int ps1 = convertDigitalToVoltage(readChannel(0));
+    int ps2 = convertDigitalToVoltage(readChannel(1));
+    int ps3 = convertDigitalToVoltage(readChannel(2));
     switch (direction) {
         case 0: // forward
             return ps1 == 0;
@@ -129,12 +118,23 @@ int canContinue(int direction) {
     return 1;
 }
 
-void proximityDetection() {
+#ifdef C2_USE_ADC
+int convertDigitalToVoltage(int adcDigital) {
+    float voltage = ((float)adcDigital) * VREF/1023.0f;
+    if (voltage >= 2.5) {
+        return 1;
+    }
+    return 0;
+}
+#endif
+
+
+void proximityDetection(void) {
     
 #ifdef C2_USE_ADC
-    int ps1 = convertVoltageToDigital(readChannel(0));
-    int ps2 = convertVoltageToDigital(readChannel(1));
-    int ps3 = convertVoltageToDigital(readChannel(2));
+    int ps1 = convertDigitalToVoltage(readChannel(0));
+    int ps2 = convertDigitalToVoltage(readChannel(1));
+    int ps3 = convertDigitalToVoltage(readChannel(2));
 #else
     int ps1 = PS1In;
     int ps2 = PS2In;

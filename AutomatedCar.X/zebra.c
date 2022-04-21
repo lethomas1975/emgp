@@ -5,10 +5,6 @@
  * Created on 27 March 2022, 18:43
  */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <xc.h>
-#include <pic18f4550.h>
 #include <math.h>
 
 #include "init.h"
@@ -17,40 +13,53 @@
 #include "buzzer.h"
 #include "zebra.h"
 
-int count = -1;
+// current state of the Optical Sensor. only trigger event on state change
 int currentState = -1;
 
-void increment() {
+// 7-Segment counter
+int count = -1;
+
+// private function to set each segment of the 7-Segment display. prototype not defined in header but here
+void setSegmentByBit(unsigned char a, unsigned char b, unsigned char c, unsigned char d, unsigned char e, unsigned char f, unsigned char g);
+
+// increment the 7-Segment counter
+void increment(void) {
     count++;
 }
 
-void decrement() {
+// decrement the 7-Segment counter
+void decrement(void) {
     count--;
 }
 
-void resetCounter() {
+// reset the 7-Segment counter
+void resetCounter(void) {
     count = -1;
 }
 
-void incrementAndDisplay() {
+// increment the 7-Segment counter and display the value
+void incrementAndDisplay(void) {
     increment();
     setSevenSegment(count);
 }
 
-void decrementAndDisplay() {
+// decrement the 7-Segment counter and display the value
+void decrementAndDisplay(void) {
     decrement();
     setSevenSegment(count);
 }
 
-void setSegmentByBit(int a, int b, int c, int d, int e, int f, int g) {
-    SevenSEGOut0 = b;
+// implementation of the private prototype
+void setSegmentByBit(unsigned char a, unsigned char b, unsigned char c, unsigned char d, unsigned char e, unsigned char f, unsigned char g) {
     SevenSEGOut1 = a;
+    SevenSEGOut0 = b;
+    SevenSEGOut6 = c;
+    SevenSEGOut5 = d;
+    SevenSEGOut4 = e;
     SevenSEGOut2 = f;
     SevenSEGOut3 = g;
-    SevenSEGOut4 = e;
-    SevenSEGOut5 = d;
-    SevenSEGOut6 = c;
 }
+
 // a | b | c | d | e | f | g | display
 // 1 | 1 | 1 | 1 | 1 | 1 | 0 | 0
 // 0 | 1 | 1 | 0 | 0 | 0 | 0 | 1
@@ -98,11 +107,11 @@ void setSevenSegment(int display) {
     }
 }
 
-void zebraDetected() {
+void zebraDetected(void) {
     if (currentState != OS1In) {
         currentState = OS1In;
         if (currentState == 0) {
-            if (uturnBool == 0) {
+            if (incrementing == 0) {
                 incrementAndDisplay();
             } else {
                 decrementAndDisplay();

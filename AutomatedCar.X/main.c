@@ -4,12 +4,6 @@
  *
  * Created on 27 March 2022, 17:53
  */
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <xc.h>
-#include <pic18f4550.h>
-
 #include "init.h"
 #include "common.h"
 #include "drive.h"
@@ -21,6 +15,5 @@ void main(void) {
     
     while (1) {
         proximityDetection();
-        //zebraDetected();
     }
 }

@@ -26,8 +26,6 @@
  * Revision history: 
  */
 
-int readChannel(int channel);
-
 // This is a guard condition so that contents of this file are not included
 // more than once.  
 #ifndef XC_HEADER_TEMPLATE_H
@@ -78,3 +76,8 @@ extern "C" {
 
 #endif	/* XC_HEADER_TEMPLATE_H */
 
+#ifndef COMMON_ADC_H
+#define COMMON_ADC_H
+
+int readChannel(unsigned char channel);
+#endif
