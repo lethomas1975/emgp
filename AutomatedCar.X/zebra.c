@@ -117,8 +117,6 @@ void zebraDetected(void) {
             }
             buzz();
             buzzOff();
-        } else if (currentState == 1) {
-            buzzOff();
         }
     }
 }
