@@ -97,6 +97,5 @@ void proximityDetection(void);
     int convertDigitalToVoltage(int adcDigital);
 #endif
 
-int incrementing = 0;
 #endif
 

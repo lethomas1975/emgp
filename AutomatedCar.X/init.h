@@ -142,4 +142,8 @@ extern "C" {
 
 // prototype of the init function
 void init(void);
+
+// global variable whether to increment the 7-Segment counter or decrement.
+// o to increment and 1 to decrement.
+int incrementing = 0;
 #endif
