@@ -44,6 +44,7 @@ int canContinue(int direction);
 void rotate(unsigned char direction[], int clockwise, int rev, int led, int move) {
     LEDRPin = (led & 0x0002) >> 1;
     LEDPin = led & 0x0001;
+    // rotate 8 steps per rev. if rev = 512, then there would be 4096 steps to do a full 360 degree
     for (int j = 0; j < rev; j++) {
         if ((j % 6) == 0 && !canContinue(move)) {
             break;
@@ -101,18 +102,33 @@ int canContinue(int direction) {
     if (direction == -1) {
         return 1;
     }
-    int ps1 = convertDigitalToVoltage(readChannel(0));
-    int ps2 = convertDigitalToVoltage(readChannel(1));
-    int ps3 = convertDigitalToVoltage(readChannel(2));
+    int ps1 = -1;
+    int ps2 = -1;
+    int ps3 = -1;
     switch (direction) {
         case 0: // forward
+            #ifdef C2_USE_ADC
+                ps1 = convertDigitalToVoltage(readChannel(0));
+            #else
+                ps1 = PS1In;
+            #endif
             return ps1 == 0;
         case 5: //uturn
         case 1: // left
         case 2: // slight left
+            #ifdef C2_USE_ADC
+                ps2 = convertDigitalToVoltage(readChannel(1));
+            #else
+                ps2 = PS2In;
+            #endif
             return ps2 == 0;
         case 3: // right
         case 4: // slight right
+            #ifdef C2_USE_ADC
+                ps3 = convertDigitalToVoltage(readChannel(2));
+            #else
+                ps3 = PS3In;
+            #endif
             return ps3 == 0;
     }
     return 1;
