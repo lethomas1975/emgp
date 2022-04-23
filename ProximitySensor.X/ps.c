@@ -15,9 +15,9 @@ void main(void) {
     init();
     while (1) {
 #ifdef C2_USE_ADC
-    int ps1 = convertDigitalToVoltage(readChannel(0));
-    int ps2 = convertDigitalToVoltage(readChannel(1));
-    int ps3 = convertDigitalToVoltage(readChannel(2));
+    int ps1 = convertVoltageToDigital(readChannel(0));
+    int ps2 = convertVoltageToDigital(readChannel(1));
+    int ps3 = convertVoltageToDigital(readChannel(2));
 #else
     int ps1 = PS1In;
     int ps2 = PS2In;
