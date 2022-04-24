@@ -94,19 +94,19 @@ extern "C" {
 
 // definition for the 7-Segment
 #define SevenSEGOut0 LATBbits.LATB1 // RB1 segment b
-#define SevenSEGOut1 LATBbits.LATB4 // RB1 segment a
+#define SevenSEGOut1 LATBbits.LATB4 // RB4 segment a
 #define SevenSEGOut2 LATBbits.LATB2 // RB2 segment f
 #define SevenSEGOut3 LATBbits.LATB3 // RB3 segment g
 #define SevenSEGOut4 LATCbits.LATC0 // RC0 segment e
 #define SevenSEGOut5 LATCbits.LATC1 // RC1 segment d
 #define SevenSEGOut6 LATCbits.LATC2 // RC2 segment c
-#define SevenSEGTrisOut0 TRISCbits.TRISC7
-#define SevenSEGTrisOut1 TRISBbits.TRISB1
+#define SevenSEGTrisOut0 TRISBbits.TRISB1
+#define SevenSEGTrisOut1 TRISBbits.TRISB4
 #define SevenSEGTrisOut2 TRISBbits.TRISB2
 #define SevenSEGTrisOut3 TRISBbits.TRISB3
-#define SevenSEGTrisOut4 TRISEbits.TRISE0
-#define SevenSEGTrisOut5 TRISEbits.TRISE1
-#define SevenSEGTrisOut6 TRISEbits.TRISE2
+#define SevenSEGTrisOut4 TRISCbits.TRISC0
+#define SevenSEGTrisOut5 TRISCbits.TRISC1
+#define SevenSEGTrisOut6 TRISCbits.TRISC2
 
 // definition for the optical sensor
 #define OS1In PORTBbits.RB0
