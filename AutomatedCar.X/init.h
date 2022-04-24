@@ -93,13 +93,13 @@ extern "C" {
 #define SMTrisOut TRISD
 
 // definition for the 7-Segment
-#define SevenSEGOut0 LATCbits.LATC7 // RC7 segment b
-#define SevenSEGOut1 LATBbits.LATB1 // RB1 segment a
+#define SevenSEGOut0 LATBbits.LATB1 // RB1 segment b
+#define SevenSEGOut1 LATBbits.LATB4 // RB1 segment a
 #define SevenSEGOut2 LATBbits.LATB2 // RB2 segment f
 #define SevenSEGOut3 LATBbits.LATB3 // RB3 segment g
-#define SevenSEGOut4 LATEbits.LATE0 // RE0 segment e
-#define SevenSEGOut5 LATEbits.LATE1 // RE1 segment d
-#define SevenSEGOut6 LATEbits.LATE2 // RE2 segment c
+#define SevenSEGOut4 LATCbits.LATC0 // RC0 segment e
+#define SevenSEGOut5 LATCbits.LATC1 // RC1 segment d
+#define SevenSEGOut6 LATCbits.LATC2 // RC2 segment c
 #define SevenSEGTrisOut0 TRISCbits.TRISC7
 #define SevenSEGTrisOut1 TRISBbits.TRISB1
 #define SevenSEGTrisOut2 TRISBbits.TRISB2
@@ -113,15 +113,15 @@ extern "C" {
 #define OS1TrisIn TRISBbits.RB0
 
 // definition for the Buzzer
-#define BUZZOut LATCbits.LATC1
-#define BUZZTrisOut TRISCbits.TRISC1
+#define BUZZOut LATEbits.LATE2
+#define BUZZTrisOut TRISEbits.TRISE2
 
 
 // test led pin
-#define LEDRPin LATCbits.LATC0       	// Define LEDPin as PORT C Pin 0 for right turn
-#define LEDRTris TRISCbits.TRISC0    	// Define LEDTris as TRISC Pin 0 as output mode
-#define LEDPin LATCbits.LATC2       	// Define LEDPin as PORT C Pin 2 for left turn and other tests
-#define LEDTris TRISCbits.TRISC2    	// Define LEDTris as TRISC Pin 2 as output mode
+#define LEDRPin LATEbits.LATE0       	// Define LEDPin as PORT E Pin 0 for right turn
+#define LEDRTris TRISEbits.TRISE0    	// Define LEDTris as TRISE Pin 0 as output mode
+#define LEDPin LATEbits.LATE1       	// Define LEDPin as PORT E Pin 1 for left turn and other tests
+#define LEDTris TRISEbits.TRISE1    	// Define LEDTris as TRISE Pin 1 as output mode
 
 // use ADC, comment the line below to use digital
 #define C2_USE_ADC
