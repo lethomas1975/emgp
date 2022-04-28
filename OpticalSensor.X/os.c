@@ -17,5 +17,6 @@ void main(void) {
     while (1) {
         LEDPin = ~OS1In;
         zebraDetected();
+        //delayInMs(100);
     }
 }

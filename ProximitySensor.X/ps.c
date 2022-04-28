@@ -31,23 +31,29 @@ void main(void) {
         int uturnBool = (ps1 == 1 && ps2 == 1 && ps3 == 1) || (ps1 == 0 && ps2 == 1 && ps3 == 1);
 
         if (forwardBool) {
+            LEDPin = 0;
             buzz();
             buzzOff();
             delayInMs(50);
         } else {
             if (leftBool) {
+                LEDPin = 1;
                 buzzOff();
                 delayInMs(100);
             } else if (slightLeftBool) {
+                LEDPin = 1;
                 buzzOff();
                 delayInMs(100);
             } else if (rightBool) {
+                LEDPin = 1;
                 buzzOff();
                 delayInMs(100);
             } else if (slightRightBool){
+                LEDPin = 1;
                 buzzOff();
                 delayInMs(100);
             } else if (uturnBool) {
+                LEDPin = 1;
                 buzzOff();
                 delayInMs(100);
             }
