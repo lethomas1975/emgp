@@ -17,6 +17,11 @@
         ADRESH=0;
         ADRESL=0;
     }
+
+    void resetAllDigital(void) {
+        ADCON1 = 0x0F;
+        CMCON = 0x07;
+    }
 #endif
 
 void init(void) {
@@ -69,6 +74,8 @@ void init(void) {
     SevenSEGTrisOut6 = 0;
 
     // set the LED as output (TRIS to 0)
+    LEDPin = 0;
+    LEDRPin = 0;
     LEDTris = 0;
     LEDRTris = 0;
 

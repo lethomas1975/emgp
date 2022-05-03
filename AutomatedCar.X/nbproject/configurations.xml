@@ -9,6 +9,7 @@
       <itemPath>buzzer.h</itemPath>
       <itemPath>zebra.h</itemPath>
       <itemPath>common.h</itemPath>
+      <itemPath>common_adc.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"

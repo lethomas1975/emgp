@@ -11,16 +11,19 @@
 void main(void) {
     init();
     
-    while (1) {
+    int stop = 0;
+    while (!stop) {
         for (int i = 0; i < 10; i++) {
             incrementAndDisplay();
             delayInMs(100);
         }
-        increment();
+        switchIncrement();
         for (int i = 0; i < 10; i++) {
             decrementAndDisplay();
             delayInMs(100);
         }
-        resetCounter();
+        if (isIncrementing() == 0 && counterValue() == 0) {
+            stop = 1;
+        }
     }
 }

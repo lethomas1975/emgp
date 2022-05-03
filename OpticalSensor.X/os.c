@@ -15,7 +15,7 @@ void main(void) {
     buzzOff();
     
     while (1) {
-        LEDPin = ~OS1In;
+        LEDPin = OS1In;
         zebraDetected();
         //delayInMs(100);
     }

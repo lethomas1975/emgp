@@ -13,8 +13,9 @@
 #include "zebra.h"
 
 const float VREF = 5.0f;
+const float DETECTION_VOLT = 2.3f;
 
-int STEP_DELAY = 1;
+int STEP_DELAY = 0;
 int STEPS_PER_REV = (int) (360.0 / ((5.625/64.0) * 8.0)) / 4; // datasheet angle per step 5.625/64
 // we will not do a full revolution so can detect obstacles faster.
 
@@ -27,6 +28,12 @@ unsigned char RGT[] = { 0b00000001, 0b00000011, 0b00000010, 0b00000110, 0b000001
 unsigned char ULFT[] = { 0b10001000, 0b11001100, 0b01000100, 0b01100110, 0b00100010, 0b00110011, 0b00010001, 0b10011001 };
 unsigned char URGT[] = { 0b00010001, 0b00110011, 0b00100010, 0b01100110, 0b01000100, 0b11001100, 0b10001000, 0b10011001 };
 
+int backwardBool = 0;
+
+int stepCount = 0;
+int stepTotal = -1;
+
+int previousDetection = -1;
 
 /*
  * direction is one of the array above,
@@ -35,19 +42,20 @@ unsigned char URGT[] = { 0b00010001, 0b00110011, 0b00100010, 0b01100110, 0b01000
  * led, 0 for no LED, 1 for left LED, 2 for right LED and 3 for both
  * move is the current move (left, right, front back to check 
  */
-void rotate(unsigned char direction[], int clockwise, int rev, int led, int move);
+void rotate(unsigned char direction[], int clockwise, int led);
 
-int canContinue(int direction);
+int detectedPath(int forward, int left, int slightLeft, int right, int slightRight, int uturn);
 
-void rotate(unsigned char direction[], int clockwise, int rev, int led, int move) {
+void initCounters(void);
+
+void rotate(unsigned char direction[], int clockwise, int led) {
     LEDRPin = (led & 0x0002) >> 1;
     LEDPin = led & 0x0001;
     // rotate 8 steps per rev. if rev = 512, then there would be 4096 steps to do a full 360 degree
-    for (int j = 0; j < rev; j++) {
-        if ((j % 6) == 0 && !canContinue(move)) {
-            break;
-        }
+    for (int j = 0; j < STEPS_PER_REV / 2; j++) {
         // run through 8 steps so it would turn 11.xx degree
+        stepCount++;
+        zebraDetected();
         for (int i = 0; i < 8; i++) {
             int k = i;
             if (clockwise == 0) {
@@ -56,92 +64,70 @@ void rotate(unsigned char direction[], int clockwise, int rev, int led, int move
             SMOut = direction[k];
             delayInUs(STEP_DELAY);
         }
-        zebraDetected();
     }    
     LEDRPin = 0;
     LEDPin = 0;
 }
 
 void left(void) {
-    rotate(LFT, 1, (STEPS_PER_REV + 1) * 4, 1, 1);
-}
-
-void slightLeft(void) {
-    rotate(LFT, 1, STEPS_PER_REV, 1, 2);
+    rotate(LFT, 1, 1);
 }
 
 void right(void) {
-    rotate(RGT, 1, (STEPS_PER_REV + 1) * 4, 2, 3);
-}
-
-void slightRight(void) {
-    rotate(RGT, 1, STEPS_PER_REV, 2, 4);
+    rotate(RGT, 1, 2);
 }
 
 void forward(void) {
-    rotate(FWD, 1, STEPS_PER_REV / 2, 0, -1);
+    rotate(FWD, 1, 0);
 }
 
 void backward(void) {
-    rotate(FWD, 0, STEPS_PER_REV * 4, 3, -1);
-}
-
-void slightBackward(void) {
-    rotate(FWD, 0, STEPS_PER_REV * 2, 3, -1);
+    rotate(FWD, 0, 3);
 }
 
 void uturn(void) {
-    incrementing = (incrementing + 1) % 2;
-    rotate(ULFT, 1, (STEPS_PER_REV + 1) * 4, 1, 5);
+    if (stepCount == 0) {
+        switchIncrement();
+    }
+    rotate(ULFT, 1, 1);
 }
 
-
-int canContinue(int direction) {
-    if (direction == -1) {
-        return 1;
-    }
-    int ps1 = -1;
-    int ps2 = -1;
-    int ps3 = -1;
-    switch (direction) {
-        case 0: // forward
-            #ifdef C2_USE_ADC
-                ps1 = convertVoltageToDigital(readChannel(0));
-            #else
-                ps1 = PS1In;
-            #endif
-            return ps1 == 0;
-        case 5: //uturn
-        case 1: // left
-        case 2: // slight left
-            #ifdef C2_USE_ADC
-                ps2 = convertVoltageToDigital(readChannel(1));
-            #else
-                ps2 = PS2In;
-            #endif
-            return ps2 == 0;
-        case 3: // right
-        case 4: // slight right
-            #ifdef C2_USE_ADC
-                ps3 = convertVoltageToDigital(readChannel(2));
-            #else
-                ps3 = PS3In;
-            #endif
-            return ps3 == 0;
-    }
-    return 1;
-}
 
 #ifdef C2_USE_ADC
 int convertVoltageToDigital(int adcDigital) {
     float voltage = ((float)adcDigital) * VREF/1023.0f;
-    if (voltage >= 2.5) {
+    if (voltage > DETECTION_VOLT) {
         return 1;
     }
     return 0;
 }
 #endif
 
+void initCounters(void) {
+    backwardBool = 0;
+    stepCount = 0;
+    stepTotal = -1;
+    previousDetection = 1;
+}
+
+int detectedPath(int forward, int left, int slightLeft, int right, int slightRight, int uturn) {
+    if (left) {
+        return 2;
+    }
+    if (slightLeft) {
+        return 3;
+    }
+    if (right) {
+        return 4;
+    }
+    if (slightRight) {
+        return 5;
+    }
+    if (uturn) {
+        return 6;
+    }
+    return 1;
+}
 
 void proximityDetection(void) {
     
@@ -163,7 +149,7 @@ void proximityDetection(void) {
     // 1   | 1   | 0   | right (90 degree right turn)
     // 0   | 1   | 0   | slight right (45 degree right turn)
     // 1   | 1   | 1   | u-turn
-    // 0   | 1   | 1   | u-turn
+    // 0   | 1   | 1   | u-turn    
     int forwardBool = ps1 == 0 && ps2 == 0 && ps3 == 0;
     int leftBool = (ps1 == 1 && ps2 == 0 && ps3 == 0) || (ps1 == 1 && ps2 == 0 && ps3 == 1);
     int slightLeftBool = ps1 == 0 && ps2 == 0 && ps3 == 1;
@@ -171,27 +157,49 @@ void proximityDetection(void) {
     int slightRightBool = ps1 == 0 && ps2 == 1 && ps3 == 0;
     int uturnBool = (ps1 == 1 && ps2 == 1 && ps3 == 1) || (ps1 == 0 && ps2 == 1 && ps3 == 1);
 
-    if (forwardBool) {
-        forward();
-    } else {
-        buzz();
-        buzzOff();
-        
-        if (!slightLeftBool && !slightRightBool) {
-            backward();            
+    if (backwardBool == 0) {
+        if (forwardBool) {
+            //buzzOff();
+            forward();
         } else {
-            slightBackward();
+            //buzz();
+            backwardBool = 1;
+            previousDetection = detectedPath(forwardBool, leftBool, slightLeftBool, rightBool, slightRightBool, uturnBool);
         }
-        if (leftBool) {
-            left();
-        } else if (slightLeftBool) {
-            slightLeft();
-        } else if (rightBool) {
-            right();
-        } else if (slightRightBool){
-            slightRight();
-        } else if (uturnBool) {
-            uturn();
+    }
+    
+    if (backwardBool == 1 && !forwardBool) {
+        backward();
+        stepCount = 0;        
+        if (stepTotal != -1) {
+            initCounters();
+        }
+    } else {
+        if (stepTotal == -1 || stepCount < stepTotal) {
+            switch (previousDetection) {
+                case 2:
+                    stepTotal = STEPS_PER_REV * 4;
+                    left();
+                    break;
+                case 3:
+                    stepTotal = STEPS_PER_REV;
+                    left();
+                    break;
+                case 4:
+                    stepTotal = STEPS_PER_REV * 4;
+                    right();
+                    break;
+                case 5:
+                    stepTotal = STEPS_PER_REV;
+                    right();
+                    break;
+                case 6:
+                    stepTotal = STEPS_PER_REV * 4 + 8;
+                    uturn();
+                    break;
+            }
+        } else {
+            initCounters();
         }
     }
 }

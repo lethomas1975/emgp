@@ -11,7 +11,6 @@
 
 void buzz(void) {
     BUZZOut = 1;
-    delayInMs(50);
 }
 
 void buzzOff(void) {

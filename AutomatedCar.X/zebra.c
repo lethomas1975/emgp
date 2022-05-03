@@ -13,27 +13,37 @@
 #include "zebra.h"
 
 // current state of the Optical Sensor. only trigger event on state change
-int currentState = -1;
+int previousState = -1;
 
 // 7-Segment counter
-int count = -1;
+int count = 0;
+
+// global variable whether to increment the 7-Segment counter or decrement.
+// 1 to increment and 0 to decrement.
+int incrementing = 1;
 
 // private function to set each segment of the 7-Segment display. prototype not defined in header but here
 void setSegmentByBit(unsigned char a, unsigned char b, unsigned char c, unsigned char d, unsigned char e, unsigned char f, unsigned char g);
 
 // increment the 7-Segment counter
 void increment(void) {
-    count++;
+    if (count < 9) {
+        count++;
+    }
 }
 
 // decrement the 7-Segment counter
 void decrement(void) {
-    count--;
+    if (count > 0) {
+        count--;
+    }
 }
 
 // reset the 7-Segment counter
 void resetCounter(void) {
     count = -1;
+    previousState = -1;
+    incrementing = 1;
 }
 
 // increment the 7-Segment counter and display the value
@@ -46,6 +56,18 @@ void incrementAndDisplay(void) {
 void decrementAndDisplay(void) {
     decrement();
     setSevenSegment(count);
+}
+
+int counterValue(void) {
+    return count;
+}
+
+void switchIncrement(void) {
+    incrementing = (incrementing + 1) % 2;
+}
+
+int isIncrementing(void) {
+    return incrementing;
 }
 
 // implementation of the private prototype
@@ -107,16 +129,17 @@ void setSevenSegment(int display) {
 }
 
 void zebraDetected(void) {
-    if (currentState != OS1In) {
-        currentState = OS1In;
-        if (currentState == 0) {
-            if (incrementing == 0) {
+    if (previousState != OS1In) {
+        previousState = OS1In;
+        if (previousState == 1) {
+            if (incrementing == 1) {
                 incrementAndDisplay();
             } else {
                 decrementAndDisplay();
             }
             buzz();
-            buzzOff();
+        } else {
+            buzzOff();            
         }
     }
 }
