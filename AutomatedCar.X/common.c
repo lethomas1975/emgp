@@ -13,7 +13,7 @@ void delayInMs(int ms) {
             _delay(10);
         }
     } else {
-        _delay(0);
+        _delay(1);
     }
 }
 
@@ -24,6 +24,6 @@ void delayInUs(int us) {
             _delay(10);
         }
     } else {
-        _delay(0);
+        _delay(5);
     }
 }

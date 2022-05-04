@@ -13,9 +13,9 @@
 #include "zebra.h"
 
 const float VREF = 5.0f;
-const float DETECTION_VOLT = 2.3f;
+const float DETECTION_VOLT = 1.10f;
 
-int STEP_DELAY = 0;
+int STEP_DELAY = 1;
 int STEPS_PER_REV = (int) (360.0 / ((5.625/64.0) * 8.0)) / 4; // datasheet angle per step 5.625/64
 // we will not do a full revolution so can detect obstacles faster.
 
@@ -130,6 +130,20 @@ int detectedPath(int forward, int left, int slightLeft, int right, int slightRig
 }
 
 void proximityDetection(void) {
+
+    int stop = 0;
+    if (hasIncremented() == 1 && isIncrementing() == 0 && counterValue() == 0) {
+        stop = 1;
+    }
+    
+    if (stop) {
+        buzz();
+        LEDPin = ~LEDPin;
+        LEDRPin = ~LEDRPin;
+        _delay(50);
+        buzzOff();
+        return;
+    }
     
 #ifdef C2_USE_ADC
     int ps1 = convertVoltageToDigital(readChannel(0));
@@ -169,7 +183,16 @@ void proximityDetection(void) {
     }
     
     if (backwardBool == 1 && !forwardBool) {
-        backward();
+        if (ps1 == 1 && ps2 == 0 && ps3 == 0) {
+            stepCount = 0;        
+            stepTotal = STEPS_PER_REV * 4;
+            while (stepCount < stepTotal) {
+                backward();                            
+            }
+            stepTotal = -1;
+        } else {
+            backward();            
+        }
         stepCount = 0;        
         if (stepTotal != -1) {
             initCounters();
@@ -194,7 +217,7 @@ void proximityDetection(void) {
                     right();
                     break;
                 case 6:
-                    stepTotal = STEPS_PER_REV * 4 + 8;
+                    stepTotal = STEPS_PER_REV * 4;
                     uturn();
                     break;
             }
@@ -202,4 +225,5 @@ void proximityDetection(void) {
             initCounters();
         }
     }
+
 }

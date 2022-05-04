@@ -20,6 +20,7 @@ int counterValue(void);
 
 void switchIncrement(void);
 int isIncrementing(void);
+int hasIncremented(void);
 
 // functions for Optical Sensor
 void zebraDetected(void);

@@ -14,17 +14,13 @@ void main(void) {
     init();
     for (int i = 0; i < 5; i++) {
         LEDPin = ~LEDPin;
-        LEDRPin = ~LEDPin;
-        delayInMs(30);
+        LEDRPin = ~LEDRPin;
+        delayInMs(50);
     }
     LEDPin = 0;
     LEDRPin = 0;
-    int stop = 0;
-    while (!stop) {
+    while (1) {
         proximityDetection();
-        if (isIncrementing() == 0 && counterValue() == 0) {
-            stop = 1;
-        }
     }
     resetAllDigital();
     resetCounter();

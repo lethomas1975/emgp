@@ -21,12 +21,18 @@ int count = 0;
 // global variable whether to increment the 7-Segment counter or decrement.
 // 1 to increment and 0 to decrement.
 int incrementing = 1;
+int incremented = 0;
 
 // private function to set each segment of the 7-Segment display. prototype not defined in header but here
 void setSegmentByBit(unsigned char a, unsigned char b, unsigned char c, unsigned char d, unsigned char e, unsigned char f, unsigned char g);
 
+int hasIncremented(void) {
+    return incremented;
+}
+
 // increment the 7-Segment counter
 void increment(void) {
+    incremented = 1;
     if (count < 9) {
         count++;
     }
