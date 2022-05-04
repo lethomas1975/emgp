@@ -18,7 +18,7 @@
  * Return:
  *  the digital value of the conversion based on the ADRESH and ADRESL
  * 
- * Author: Cher Kohr 06/04/2022
+ * Author: Cher Khor 06/04/2022
  * Author: Soon Lee Teo 06/04/2022
  * Author: Thomas Le 06/04/2022
  */

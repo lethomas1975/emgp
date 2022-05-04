@@ -8,12 +8,11 @@
 #include "common.h"
 #include "buzzer.h"
 
-
 /**
  * buzz()
  * turn on the buzzer
  * 
- * Author: Lily Zhang 28/03/2022
+ * Author: Lili Zhang 28/03/2022
  */
 void buzz(void) {
     BUZZOut = 1;
@@ -23,7 +22,7 @@ void buzz(void) {
  * buzzOff()
  * turn off the buzzer
  * 
- * Author: Lily Zhang 28/03/2022
+ * Author: Lili Zhang 28/03/2022
  */
 void buzzOff(void) {
     BUZZOut = 0;

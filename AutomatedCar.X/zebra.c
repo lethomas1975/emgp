@@ -44,7 +44,7 @@ int hasIncremented(void) {
  * increment()
  * increment the 7-Segment counter
  * 
- * Author: Lily Zhang 27/03/2022
+ * Author: Lili Zhang 27/03/2022
  * Author: Thomas Le 03/05/2022
  */
 void increment(void) {
@@ -58,7 +58,7 @@ void increment(void) {
  * decrement()
  * decrement the 7-Segment counter
  * 
- * Author: Lily Zhang 27/03/2022
+ * Author: Lili Zhang 27/03/2022
  */
 void decrement(void) {
     if (count > 0) {
@@ -70,7 +70,7 @@ void decrement(void) {
  * resetCounter()
  * reset the 7-Segment counter
  * 
- * Author: Lily Zhang 27/03/2022
+ * Author: Lili Zhang 27/03/2022
  */
 void resetCounter(void) {
     count = -1;
@@ -82,7 +82,7 @@ void resetCounter(void) {
  * incrementAndDisplay()
  * increment the 7-Segment counter and display the value
  * 
- * Author: Lily Zhang 27/03/2022
+ * Author: Lili Zhang 27/03/2022
  */
 void incrementAndDisplay(void) {
     increment();
@@ -93,7 +93,7 @@ void incrementAndDisplay(void) {
  * decrementAndDisplay()
  * decrement the 7-Segment counter and display the value
  * 
- * Author: Lily Zhang 27/03/2022
+ * Author: Lili Zhang 27/03/2022
  */
 void decrementAndDisplay(void) {
     decrement();
@@ -153,7 +153,7 @@ int isIncrementing(void) {
  *  f: segment f either 0 or 1
  *  g: segment g either 0 or 1
  * 
- * Author: Lily Zhang 27/03/2022
+ * Author: Lili Zhang 27/03/2022
  */
 void setSegmentByBit(unsigned char a, unsigned char b, unsigned char c, unsigned char d, unsigned char e, unsigned char f, unsigned char g) {
     SevenSEGOut1 = a;
@@ -183,7 +183,7 @@ void setSegmentByBit(unsigned char a, unsigned char b, unsigned char c, unsigned
  * Parameters:
  *  display: value to display
  * 
- * Author: Lily Zhang 27/03/2022
+ * Author: Lili Zhang 27/03/2022
  */
 void setSevenSegment(int display) {
     int tmp = abs(display) % 10;
