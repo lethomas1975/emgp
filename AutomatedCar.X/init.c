@@ -11,6 +11,14 @@
     // ADC init. will only be visible we activate ADC and defining C2_USE_ADC
     void initADC(void);
 
+    /**
+     * initADC()
+     * initialise ADC
+     * 
+     * Author: Cher Kohr 06/04/2022
+     * Author: Soon Lee Teo 06/04/2022
+     * Author: Thomas Le 06/04/2022
+     */
     void initADC(void) {
         ADCON1 = 0x0C; // AN0, AN1 and AN2 use Analog
         ADCON2 = 0b10001001; // right alignment, 2TAD and FOSC/8
@@ -18,12 +26,24 @@
         ADRESL=0;
     }
 
+    /**
+     * resetAllDigital()
+     * reset every pin to digital
+     * 
+     * Author: Thomas Le 03/05/2022
+     */
     void resetAllDigital(void) {
         ADCON1 = 0x0F;
         CMCON = 0x07;
     }
 #endif
 
+/**
+ * init()
+ * initialise the ports and ADC
+ * 
+ * Author: Thomas Le 27/03/2022
+ */
 void init(void) {
     // disabling ADC
     ADCON0bits.GO = 0;

@@ -16,11 +16,11 @@ void incrementAndDisplay(void);     // increment the 7-Segment counter and displ
 void decrement(void);               // decrement the 7-Segment counter
 void decrementAndDisplay(void);     // decrement the 7-Segment counter and display the value on the LED
 void setSevenSegment(int count);    // display the 7-Segment on the LED
-int counterValue(void);
+int counterValue(void);             // return the current count
 
-void switchIncrement(void);
-int isIncrementing(void);
-int hasIncremented(void);
+void switchIncrement(void);         // switch between incrementing and decrementing
+int isIncrementing(void);           // return 0 is decrementing or 1 is incrementing
+int hasIncremented(void);           // return 1 if it has incremented at least once, else 0
 
 // functions for Optical Sensor
 void zebraDetected(void);

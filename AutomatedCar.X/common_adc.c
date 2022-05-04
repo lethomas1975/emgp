@@ -8,6 +8,20 @@
 #include "init.h"
 #include "common_adc.h"
 
+/**
+ * readChannel()
+ * read the analog value on a channel and convert to digital
+ *
+ * Parameters:
+ *  channel: channel where to read the analog value (correspond to port)
+ * 
+ * Return:
+ *  the digital value of the conversion based on the ADRESH and ADRESL
+ * 
+ * Author: Cher Kohr 06/04/2022
+ * Author: Soon Lee Teo 06/04/2022
+ * Author: Thomas Le 06/04/2022
+ */
 int readChannel(unsigned char channel) {
     ADCON0bits.CHS0 = 0;
     ADCON0bits.CHS1 = 0;

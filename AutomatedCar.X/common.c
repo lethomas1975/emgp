@@ -7,6 +7,15 @@
 
 #include "common.h"
 
+/**
+ * delayInMs()
+ * delay in millisecond
+ *
+ * Parameters:
+ *  ms: milliseconds to delay
+ * 
+ * Author: Thomas Le 01/04/2022
+ */
 void delayInMs(int ms) {
     if (ms/10 > 1) {
         for (int i = 0; i < ms / 10; i++) {
@@ -17,6 +26,15 @@ void delayInMs(int ms) {
     }
 }
 
+/**
+ * delayInUs()
+ * delay in microsecond
+ *
+ * Parameters:
+ *  us: microseconds to delay
+ * 
+ * Author: Thomas Le 01/04/2022
+ */
 void delayInUs(int us) {
 
     if (us/10 >= 1) {
