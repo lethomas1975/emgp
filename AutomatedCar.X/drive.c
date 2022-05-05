@@ -288,33 +288,33 @@ void proximityDetection(void) {
         if (stepTotal != -1) {
             initCounters();
         }
-    } else {
-        if (stepTotal == -1 || stepCount < stepTotal) {
-            switch (previousDetection) {
-                case 2:
-                    stepTotal = STEPS_PER_REV * 4;
-                    left();
-                    break;
-                case 3:
-                    stepTotal = STEPS_PER_REV;
-                    left();
-                    break;
-                case 4:
-                    stepTotal = STEPS_PER_REV * 4;
-                    right();
-                    break;
-                case 5:
-                    stepTotal = STEPS_PER_REV;
-                    right();
-                    break;
-                case 6:
-                    stepTotal = STEPS_PER_REV * 4;
-                    uturn();
-                    break;
-            }
-        } else {
-            initCounters();
+    } else if (stepTotal == -1 || stepCount < stepTotal) {
+        switch (previousDetection) {
+            case 2:
+                stepTotal = STEPS_PER_REV * 4;
+                left();
+                break;
+            case 3:
+                stepTotal = STEPS_PER_REV;
+                left();
+                break;
+            case 4:
+                stepTotal = STEPS_PER_REV * 4;
+                right();
+                break;
+            case 5:
+                stepTotal = STEPS_PER_REV;
+                right();
+                break;
+            case 6:
+                stepTotal = STEPS_PER_REV * 4;
+                uturn();
+                break;
+            default:
+                initCounters();
+                break;
         }
+    } else {
+        initCounters();
     }
-
 }
