@@ -13,7 +13,7 @@
 #include "zebra.h"
 
 const float VREF = 5.0f;
-const float DETECTION_VOLT = 1.10f;
+const float DETECTION_VOLT = 1.8f;
 
 int STEP_DELAY = 1;
 int STEPS_PER_REV = (int) (360.0 / ((5.625/64.0) * 8.0)) / 4; // datasheet angle per step 5.625/64
